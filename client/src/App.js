@@ -19,6 +19,7 @@ import AssoProfile from './Admin/profile'
 import Information from './Trains/homepage';
 import Weather from './Weather/page';
 import Cricket from './Cricket/Cricket';
+import { Upload } from './Partner/upload';
 
 
 
@@ -90,14 +91,12 @@ const router = createBrowserRouter(
     {
       path: "/cricket",
       element: <Cricket />
+    },
+    {
+      path: "/upload",
+      element: <Upload />
     }
-
-
-
-
-
   ]
-
 );
 
 
