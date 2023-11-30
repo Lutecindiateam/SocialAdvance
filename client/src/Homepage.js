@@ -138,6 +138,30 @@ function App() {
         </a>
       </li>
     </ul>
+    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
+      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
+        <span
+          style={{
+            width: "10px",
+            height: "10px",
+            borderRadius: "50%",
+            backgroundColor: "white",
+            marginRight: "4px",
+          }}
+        ></span>
+        <a
+          href="/partnerlogin"
+          style={{
+            color: "white",
+            fontSize: "20px",
+            textDecoration: "underline",
+            padding: "5px",
+          }}
+        >
+          Partner
+        </a>
+      </li>
+    </ul>
   </nav>
 </div>
 

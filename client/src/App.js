@@ -19,13 +19,16 @@ import AssoProfile from './Admin/profile'
 import Information from './Trains/homepage';
 import Weather from './Weather/page';
 import Cricket from './Cricket/Cricket';
-import { Upload } from './Partner/upload';
-
+import { UploadData } from './Partner/UploadData';
+import Sidebar from './Partner/Sidebar';
+import Home, { AllData } from './Partner/AllData';
+import PartnerLogin from './Partner/signin';
+// import Main from "./Partner/Main"
+import PartnerSignUp from "./Partner/signup"
+import PartnerForget from "./Partner/forget"
 
 
 const router = createBrowserRouter(
-
-
   [
     {
       path: "/",
@@ -93,12 +96,32 @@ const router = createBrowserRouter(
       element: <Cricket />
     },
     {
+      path: "/main",
+      element: <Sidebar />
+    },
+    {
       path: "/upload",
-      element: <Upload />
+      element: <UploadData />
+    },
+    {
+      path: "/all-data",
+      element: <AllData />
+    },
+    {
+      path: "/partnerlogin",
+      element: <PartnerLogin />
+    },
+    {
+      path: "/partnersignup",
+      element: <PartnerSignUp />
+    },
+    {
+      path: "/partnerforget",
+      element: <PartnerForget />
     }
+
   ]
 );
-
 
 export default router;
 

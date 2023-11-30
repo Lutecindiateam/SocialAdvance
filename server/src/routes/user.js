@@ -5,6 +5,7 @@ const { submit_form, getallusers, getsingleusers, getallinfo } = require('../con
 const { uploadProductsFromCSV } = require('../controller/partnerupload');
 const multer = require('multer');
 const path = require('path');
+const { authenticate_partner, forget_partner, create_partner_account } = require('../controller/partner');
 
 
 // const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');
@@ -43,7 +44,9 @@ router.patch("/user/forget_pass" ,UserForgetPass)
 router.post("/getprofile", getprofile)
 // router.get("/getrecords",getRecords)
 // http://localhost:5000/api/getallinfo/userData
-
+router.post("/authenticate_partner", authenticate_partner)
+router.post("/create_partner_account", create_partner_account)
+router.patch("/forget_partner", forget_partner)
 //API for partner
 
 router.post("/upload-csv", upload.single('csvFile'), uploadProductsFromCSV )
