@@ -1,5 +1,5 @@
 const fs = require('fs');
-const upload = require('../models/upload');
+const upload = require('../../models/partner/upload');
 const csv = require('csv-parser');
 
 exports.uploadProductsFromCSV = (req, res) => {

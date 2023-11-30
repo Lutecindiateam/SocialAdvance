@@ -2,10 +2,10 @@ const express= require('express');
 const { create_user_account, authenticate_user, UserForgetPass } = require('../controller/user');
 const { create_admin_account, authenticate_admin,getallmandals, user_management, update, forgetPass, getprofile } = require('../controller/admin');
 const { submit_form, getallusers, getsingleusers, getallinfo } = require('../controller/receipt');
-const { uploadProductsFromCSV } = require('../controller/partnerupload');
+const { uploadProductsFromCSV } = require('../controller/partner/partnerupload');
 const multer = require('multer');
 const path = require('path');
-const { authenticate_partner, forget_partner, create_partner_account } = require('../controller/partner');
+const { authenticate_partner, forget_partner, create_partner_account } = require('../controller/partner/partner');
 
 
 // const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');

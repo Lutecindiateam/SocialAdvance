@@ -1,9 +1,9 @@
-const Partner = require("../models/partner");
+const Partner = require("../../models/partner/partner");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const admin = require("../models/admin");
-const User = require("../models/user");
-const Admin = require("../models/admin");
+const admin = require("../../models/admin");
+const User = require("../../models/user");
+const Admin = require("../../models/admin");
 
 exports.create_partner_account = async (req, res) => {
   // console.log(req.body);
