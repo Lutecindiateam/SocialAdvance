@@ -1,20 +1,28 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react'
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {RouterProvider} from "react-router-dom";
-import router from './App';
-import { Provider } from 'react-redux';
-import {store} from './Redux/store';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider } from "react-router-dom";
+import router from "./App";
+import { Provider } from "react-redux";
+import { store ,persistor, sagaMiddleware} from "./Redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import mainSaga from "./Redux/sagas";
+import axios from "axios";
 
+sagaMiddleware.run(mainSaga);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.baseURL = `${process.env.REACT_APP_API_HOST}`
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>
 );
 

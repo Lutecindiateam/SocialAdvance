@@ -5,19 +5,25 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { requestLogin, userLogout } from "../Redux/actions";
+import Swal from "sweetalert2";
 
-
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+const BASEURL = "http://localhost:5000/api";
 
 //for production
 
 // const BASEURL = "/api"
-
-export default function PartnerLogin() {
+const PartnerLogin = (props) => {
+  // export default function PartnerLogin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorpassword, seterrorpassword] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     setEmail("");
@@ -26,48 +32,89 @@ export default function PartnerLogin() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const form = {
-      email,
-      password,
-    }
+    // props.userLogout();
+    // const form = {
+    //   email,
+    //   password,
+    // }
 
-    fetch(`${BASEURL}/authenticate_partner`, {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+    
+    props.requestLogin({
+      data: {
+        email: email,
+        password: password,
       },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "Partner" && data.active === "success") {
-          alert("Login successful");
-          localStorage.setItem("info", JSON.stringify(data));
-           navigate(`/upload`);
-        } else {
-          alert(data.error);
-        }
-      });
+    });
+    // fetch(`${BASEURL}/authenticate_partner`, {
+    //   method: "POST",
+    //   crossDomain: true,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    //   body: JSON.stringify({
+    //     email,
+    //     password,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+        // if (data.status === "Partner" && data.active === "success") {
+        //   alert("Login successful");
+        //   localStorage.setItem("info", JSON.stringify(data));
+        //    navigate(`/upload`);
+        // } else {
+    //       alert(data.error);
+    //     }
+    //   });
   }
+
+  useEffect(() => {
+    let loginData = props.candidate.loginData;
+    // console.log(loginData);
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        // if (loginData?.data.data.status === "Partner" && loginData?.data.data.active === "success") {
+          Swal.fire("Good job!", "Login successfully.", "success");
+          // localStorage.setItem("info", JSON.stringify(data));
+           navigate("/upload");
+        // }
+        // console.log(localStorage.getItem("link"));
+        // if (localStorage.getItem("link")) {
+        //   navigate(localStorage.getItem("link"));
+        // } else {
+        //   navigate("/upload");
+        // }
+      } else {
+        Swal.fire("Sorry!", loginData.data.error , "error");
+        seterrorpassword("Invalid Credentials");
+        setError(true);
+      }
+    }
+  }, [props.candidate.loginData]);
+
   return (
     <div className="background-container">
-      <Container component="main" maxWidth="xs"
+      <Container
+        component="main"
+        maxWidth="xs"
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           minHeight: "80vh", // Center vertically
-        }}>
+        }}
+      >
         <div>
-          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Login</Typography>
-          <form onSubmit={handleSubmit} >
+          <Typography
+            variant="h5"
+            style={{ textAlign: "center", fontSize: "30px", color: "white" }}
+          >
+            Login
+          </Typography>
+          <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
               label="Email address"
@@ -94,7 +141,6 @@ export default function PartnerLogin() {
                 },
               }}
             />
-
             <TextField
               fullWidth
               label="Password"
@@ -122,23 +168,52 @@ export default function PartnerLogin() {
               }}
             />
 
-            
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              <a href="/partnerforget" className="font-size-3 text-dodger line-height-reset" style={{ color: "white" }}>
+            <Typography
+              variant="body2"
+              align="right"
+              style={{ color: "white", fontSize: "16px" }}
+            >
+              <a
+                href="/partnerforget"
+                className="font-size-3 text-dodger line-height-reset"
+                style={{ color: "white" }}
+              >
                 Forgot Password
               </a>
             </Typography>
             <div style={{ paddingTop: "5px", paddingBottom: "5px" }}>
-              <Button type="submit" variant="contained" color="primary" fullWidth style={{ borderRadius: "10px", height: "50px" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                style={{ borderRadius: "10px", height: "50px" }}
+              >
                 Login
               </Button>
             </div>
-            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
-              Don't have an account? <a href="/partnersignup" style={{ color: "white" }}>Sign up</a>
+            <Typography
+              variant="body2"
+              align="right"
+              style={{ color: "white", fontSize: "16px" }}
+            >
+              Don't have an account?{" "}
+              <a href="/partnersignup" style={{ color: "white" }}>
+                Sign up
+              </a>
             </Typography>
           </form>
         </div>
       </Container>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return { candidate: state.candidate };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ requestLogin, userLogout }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PartnerLogin);

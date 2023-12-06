@@ -1,40 +1,70 @@
-const mongoose = require("mongoose")
-
+const mongoose = require("mongoose");
 
 const applySchema = new mongoose.Schema(
-
-{
-    
-   name:{
-
-        type: String,
-
-        required: true,
-        trim: true
-
+  {
+    businessName: {
+      type: String,
+      required: true,
+      trim: true,
     },
 
-    address:{
+    address: {
+      type: String,
 
-        type:String,
-
-        required: true,
-        trim: true
-
+      required: true,
+      trim: true,
     },
-    phone :{
+    mobile: {
+      type: Number,
 
-        type:Number,
+      required: true,
+      trim: true,
+    },
+    pincode: {
+      type: Number,
 
-        required: true,
-        trim: true
+      required: true,
+      trim: true,
+    },
+    city: {
+      type: String,
 
-    }
+      required: true,
+      trim: true,
+    },
+    state: {
+      type: String,
 
-},
+      required: true,
+      trim: true,
+    },
+    category: {
+      type: String,
 
-{timestamps: true}
+      required: true,
+      trim: true,
+    },
+    subcategory: {
+      type: String,
 
-)
+      required: true,
+      trim: true,
+    },
+    leadStatus: {
+      type: String,
 
-module.exports = mongoose.model('upload', applySchema)
+      required: true,
+      trim: true,
+    },
+    status: {
+      type: String,
+
+      required: true,
+      trim: true,
+    },
+  },
+
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("upload", applySchema);

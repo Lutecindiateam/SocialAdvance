@@ -1,10 +1,61 @@
 import axios from "axios";
+const BASEURL = "http://localhost:5000/api";
 
 //===================candidate=================
 
+export const register = (obj) => {
+  // console.log(obj.data);
+  return (
+    axios
+      // .post("/candidate/register", obj.data)
+      .post(`${BASEURL}/create_partner_account`, obj.data)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      })
+  );
+};
+
 export const login = (obj) => {
+  // console.log(obj.data);
+  return (
+    axios
+      // .post("/candidate/login", obj.data)
+      .post("/authenticate_partner", obj.data)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      })
+  );
+};
+
+export const addResume = (obj) => {
   return axios
-    .post("/candidate/login", obj.data)
+    .post("/upload-csv", obj.data.formData, {
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const applyJobs = (obj) => {
+  // console.log(obj.data.formData);
+  return axios
+    .post("/shopData", obj.data.formData, {
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
     .then((response) => {
       return response;
     })
@@ -39,20 +90,6 @@ export const googlelogin = (obj) => {
 //       return err.response;
 //     });
 // };
-
-export const addResume = (obj) => {
-  return axios
-    .post("/candidate/" + obj.id + "/resume", obj.data, {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
 // export const countLastweekJob = (obj) => {
 //   return axios
@@ -98,26 +135,13 @@ export const recentlyJob = (obj) => {
 //   console.log(error.message);
 // }
 // .then((response) => {
-    //   return response;
-    // })
-    // .catch((err) => {
-    //   console.log('Error', err.message);
-    //   return err;
-    // });
+//   return response;
+// })
+// .catch((err) => {
+//   console.log('Error', err.message);
+//   return err;
+// });
 // };
-
-
-export const register = (obj) => {
-  return axios
-    .post("/candidate/register", obj.data)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
 export const empregister = (obj) => {
   return axios
@@ -284,15 +308,15 @@ export const getJobsCategoryWise = (obj) => {
 
 export const getJobsSuggestions = (obj) => {
   return axios
-  .get("/suggestions")
-  .then((response) => {
-    return response;
-  })
-  .catch((err) => {
-    console.log("Error", err.response.data.message);
-    return err.response;
-  });
-}
+    .get("/suggestions")
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
 
 export const jobDetails = (obj) => {
   return axios
@@ -374,21 +398,6 @@ export const empdeleteJob = (obj) => {
     });
 };
 
-export const applyJobs = (obj) => {
-  // console.log(obj);
-  return axios
-    .post("/job/" + obj.id + "/apply", obj.data, {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
-
 export const deleteApplyJob = (obj) => {
   return axios
     .delete("/candidate/" + obj.id + "/removeappliedjob", {
@@ -420,7 +429,7 @@ export const getCandidate = (obj) => {
 
 export const candidatelogo = (obj) => {
   return axios
-    .patch("/candidate/logurl/" + obj.id , obj.data, {
+    .patch("/candidate/logurl/" + obj.id, obj.data, {
       headers: { Authorization: `Bearer ${obj.token}` },
     })
     .then((response) => {
@@ -963,5 +972,3 @@ export const addcontact = (obj) => {
       return err.response;
     });
 };
-
-

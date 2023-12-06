@@ -1308,7 +1308,7 @@ export function* loginCandidate(action) {
   export function* addResumeCandidate(action) {
     try {
       const response = yield call(addResume, action.obj)
-     
+     console.log(response);
       yield put(receiveAddResume(response))
     } catch (e) {
       console.log(e.message)

@@ -19,7 +19,7 @@ import AssoProfile from './Admin/profile'
 import Information from './Trains/homepage';
 import Weather from './Weather/page';
 import Cricket from './Cricket/Cricket';
-import { UploadData } from './Partner/UploadData';
+import UploadData from './Partner/UploadData';
 import Sidebar from './Partner/Sidebar';
 import Home, { AllData } from './Partner/AllData';
 import PartnerLogin from './Partner/signin';

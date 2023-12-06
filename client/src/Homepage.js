@@ -1,175 +1,251 @@
-import React from "react";
-import frontpage from './image/frontpage.jpg'
-import './Homepage.css'
-import ganeshji1 from './image/ganeshji1.jpg'
+import React, { useEffect } from "react";
+import frontpage from "./image/frontpage.jpg";
+import "./Homepage.css";
+import ganeshji1 from "./image/ganeshji1.jpg";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {userLogout } from "./Redux/actions";
 
 
-
-function App() {
-  localStorage.clear()
+function App(props) {
+  
+  useEffect(() => {
+    props.userLogout();
+  },[]);
+  
   return (
     <>
-     <div className="container">
-  <nav
-    style={{
-      position: "absolute",
-      top: 0,
-      right: "20px",
-      padding: "10px",
-      zIndex: 1,
-    }}
-  >
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
-      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
-        <span
+      <div className="container">
+        <nav
           style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/adminlogin"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
+            position: "absolute",
+            top: 0,
+            right: "20px",
+            padding: "10px",
+            zIndex: 1,
           }}
         >
-          Association/Mandal
-        </a>
-      </li>
-      <li style={{ display: "flex", alignItems: "center" }}>
-        <span
-          style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/userlogin"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
-          }}
-        >
-          Member
-        </a>
-      </li>
-      
-    </ul>
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
-      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
-        <span
-          style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/train"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
-          }}
-        >
-          Travel
-        </a>
-      </li>
-    </ul>
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
-      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
-        <span
-          style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/weather"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
-          }}
-        >
-          Weather
-        </a>
-      </li>
-    </ul>
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
-      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
-        <span
-          style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/cricket"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
-          }}
-        >
-          Cricket
-        </a>
-      </li>
-    </ul>
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0", display: "flex", alignItems: "center" }}>
-      <li style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
-        <span
-          style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: "white",
-            marginRight: "4px",
-          }}
-        ></span>
-        <a
-          href="/partnerlogin"
-          style={{
-            color: "white",
-            fontSize: "20px",
-            textDecoration: "underline",
-            padding: "5px",
-          }}
-        >
-          Partner
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-
+          <ul
+            style={{
+              listStyleType: "none",
+              paddingInlineStart: "0",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+              }}
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/adminlogin"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Association/Mandal
+              </a>
+            </li>
+            <li style={{ display: "flex", alignItems: "center" }}>
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/userlogin"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Member
+              </a>
+            </li>
+          </ul>
+          <ul
+            style={{
+              listStyleType: "none",
+              paddingInlineStart: "0",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+              }}
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/train"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Travel
+              </a>
+            </li>
+          </ul>
+          <ul
+            style={{
+              listStyleType: "none",
+              paddingInlineStart: "0",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+              }}
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/weather"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Weather
+              </a>
+            </li>
+          </ul>
+          <ul
+            style={{
+              listStyleType: "none",
+              paddingInlineStart: "0",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+              }}
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/cricket"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Cricket
+              </a>
+            </li>
+          </ul>
+          <ul
+            style={{
+              listStyleType: "none",
+              paddingInlineStart: "0",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+              }}
+            >
+              <span
+                style={{
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  marginRight: "4px",
+                }}
+              ></span>
+              <a
+                href="/partnerlogin"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textDecoration: "underline",
+                  padding: "5px",
+                }}
+              >
+                Partner
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }
-export default App;
+// export default App;
+const mapStateToProps = (state) => {
+  return { candidate: state.candidate };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({  userLogout }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // import React from "react";
 // import frontpage from './image/web-image.png'
@@ -230,5 +306,3 @@ export default App;
 // }
 
 // export default App;
-
-
