@@ -40,11 +40,11 @@ const applySchema = new mongoose.Schema(
 
     active: {
       type: String,
-
-      required: true,
+      default: "pending",
+      // required: true,
       trim: true,
     },
-    employee: {
+    role: {
       type: String,
       required: true,
       trim: true,

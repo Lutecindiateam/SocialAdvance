@@ -2,18 +2,12 @@ const express= require('express');
 const { create_user_account, authenticate_user, UserForgetPass } = require('../controller/user');
 const { create_admin_account, authenticate_admin,getallmandals, user_management, update, forgetPass, getprofile } = require('../controller/admin');
 const { submit_form, getallusers, getsingleusers, getallinfo } = require('../controller/receipt');
-const { uploadProductsFromCSV } = require('../controller/partner/partnerupload');
+const { uploadProductsFromCSV, uploadShopData } = require('../controller/partner/partnerupload');
 const multer = require('multer');
 const path = require('path');
 const { authenticate_partner, forget_partner, create_partner_account, admin_action, adminupdate } = require('../controller/partner/partner');
 
-
-// const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');
-// const {createRecords,getRecords} = require('../controller/records');
 const router =express.Router();
-
-// router.post('/create_user_account',validateSignupRequest, isRequestValidated, create_user_account);
-// router.post('/authenticate_user',validateSigninRequest, isRequestValidated, authenticate_user);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -49,6 +43,7 @@ router.post("/create_partner_account", create_partner_account)
 router.patch("/forget_partner", forget_partner)
 //API for partner
 router.post("/adminaction",admin_action)
+router.post("/shopData",upload.single('file'), uploadShopData)
 router.post("/upload-csv", upload.single('csvFile'), uploadProductsFromCSV )
 router.patch('/adminupdate/:id',adminupdate);
 module.exports= router;

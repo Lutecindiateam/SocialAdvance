@@ -97,9 +97,9 @@ exports.create_partner_account = async (req, res) => {
       pincode,
       email,
       password,
-      employee,
+      role,
 
-      active,
+      // active,
     } = req.body;
     // console.log(employee);
 
@@ -112,22 +112,23 @@ exports.create_partner_account = async (req, res) => {
       pincode,
       email,
       password,
-      employee,
-      active,
+      role,
+
+      // active,
     });
     // console.log(password);
-    // console.log(employee);
+    // console.log(_partner);
     _partner.password = await bcrypt.hash(password, 10);
     // _partner.selectedValue = employee;
 
     // console.log("USER :: ",_user)
-    // console.log("_partner ::", _partner);
+    console.log("_partner ::", _partner);
     const savedPartner = await _partner.save();
     if (savedPartner) {
       return res.status(201).json({
         message: "User created successfully",
         data: _partner,
-        status: "Partner",
+        status: "success",
       });
     }
     // console.log(res);
@@ -150,8 +151,9 @@ exports.authenticate_partner = async (req, res) => {
       if (!user) {
         return res.status(400).json({ error: "Invalid email or password" });
       } else if (user.active == "pending") {
-        return res.status(400).json({ error: "Your Request is Pending " });
+        return res.status(400).json({ error: "Your request is currently pending. Please contact our support team." });
       }
+
       bcrypt.compare(password, user.password, function (error, isMatch) {
         // console.log("MATCH :: ", isMatch)
         if (isMatch) {
@@ -165,19 +167,20 @@ exports.authenticate_partner = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
+                data: { id: user.id, token: token },
                 message: "Sign In success",
-                data: token,
-                status: "Partner",
-
-                address: user.address,
-                name: user.name,
-                employee: user.employee,
-                active: user.active,
+                status: "success",
               });
+              //   return res.status(201).json({
+              //     data :{id: savedUser.id ,token:token , first_name:first_name , last_name:last_name, block:savedUser.deleted},
+              //     status :"success",
+              //     message:"Candidate registered successfully"
+
+              // })
             }
           );
         } else {
-          return res.status(400).json({ error: "Invalid email or password" });
+          return res.status(400).json({ error: "Invalid password" });
         }
       });
     });

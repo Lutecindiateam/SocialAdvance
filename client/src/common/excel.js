@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { CSVLink } from 'react-csv';
 import { useParams } from 'react-router-dom';
@@ -35,27 +34,6 @@ const Sheet = () => {
       });
    
   }, []);
-//   useEffect(() => {
-//     fetch(`http://localhost:5000/api/getallinfo`)
-//       .then(response => response.json())
-//       .then(json => {
-//         console.log("json", json);
-//   result.push(json.allinfo)
-      
-
-//         let data = result[0].map(item => ({
-//           address: item.address,
-//           amount: item.amount,
-//           date: item.date,
-//           name: item.name
-//         }));
-      
-//         console.log("mapped data", data);
-// console.log(result);
-//         setUsers(data);
-//       });
-//   }, []);
-  
 
   const headers = [
     { label: "Address", key: "address" },
