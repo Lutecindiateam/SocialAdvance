@@ -38,7 +38,7 @@ const UserSignUp = () => {
       const get = axios.get(`${BASEURL}/getallmandals`)
         .then((res) => {
 
-          // console.log(res)
+          console.log(res)
           setData(res.data.data);
         })
         .catch((err) => {

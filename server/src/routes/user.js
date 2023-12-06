@@ -5,7 +5,7 @@ const { submit_form, getallusers, getsingleusers, getallinfo } = require('../con
 const { uploadProductsFromCSV } = require('../controller/partner/partnerupload');
 const multer = require('multer');
 const path = require('path');
-const { authenticate_partner, forget_partner, create_partner_account } = require('../controller/partner/partner');
+const { authenticate_partner, forget_partner, create_partner_account, admin_action, adminupdate } = require('../controller/partner/partner');
 
 
 // const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');
@@ -48,8 +48,9 @@ router.post("/authenticate_partner", authenticate_partner)
 router.post("/create_partner_account", create_partner_account)
 router.patch("/forget_partner", forget_partner)
 //API for partner
-
+router.post("/adminaction",admin_action)
 router.post("/upload-csv", upload.single('csvFile'), uploadProductsFromCSV )
+router.patch('/adminupdate/:id',adminupdate);
 module.exports= router;
   
 

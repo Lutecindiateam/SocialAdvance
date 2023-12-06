@@ -26,7 +26,9 @@ import PartnerLogin from './Partner/signin';
 // import Main from "./Partner/Main"
 import PartnerSignUp from "./Partner/signup"
 import PartnerForget from "./Partner/forget"
-
+import Table from './Partner/table';
+import Chirkut from './Partner/table';
+import Adminaction from './Partner/adminaction';
 
 const router = createBrowserRouter(
   [
@@ -105,7 +107,7 @@ const router = createBrowserRouter(
     },
     {
       path: "/all-data",
-      element: <AllData />
+      element: <Chirkut />
     },
     {
       path: "/partnerlogin",
@@ -118,7 +120,16 @@ const router = createBrowserRouter(
     {
       path: "/partnerforget",
       element: <PartnerForget />
+    },
+    // {
+    //   path: "/table",
+    //   element: <Chirkut />
+    // },
+    {
+      path: "/adminaction",
+      element: <Adminaction />
     }
+
 
   ]
 );

@@ -15,35 +15,66 @@ import ListItemText from '@mui/material/ListItemText';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AddIcon from '@mui/icons-material/Add';
 import { Typography } from 'antd';
+import "./sidebar.css"
+import ob from './image/ob.jpg';
+
+
 
 const Sidebar = ({ handleDrawerToggle }) => {
   return (
-    <div>
+   
+    <div  style={{ backgroundColor: "#2c3e50", height: "100vh", padding: "10px"}}>
       {/* <Toolbar /> */}
-      <Typography variant="h6"style={{fontSize: "25px", textAlign: "center", padding: "8px"}}>
-            Bharat Online
-          </Typography>
+     
+     <div className="style" style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+              
+              
+          
+                <strong style={{ color: "gold", fontWeight: "bold"}}>
+                Bharat
+                </strong>
+                <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
+               
+               
+            
+                <strong style={{ color: "orange	", fontWeight: "bold" }}>
+                 On
+                </strong>
+                <strong style={{ color: "white	", fontWeight: "bold" }}>
+              li
+                </strong>
+                <strong style={{ color: "green	", fontWeight: "bold" }}>
+                 ne
+                </strong>
+               
+               
+                </div>
+   
+          
                 <Divider />
       <List>
         <ListItem key="upload" disablePadding>
           <ListItemButton  to="/upload">
             <ListItemIcon>           
-              <AddIcon />
+              <AddIcon style={{color:"white"}} />
             </ListItemIcon>
-            <ListItemText primary="Upload Data" />
+            <ListItemText primary="Upload Data" style={{color:"white"}} />
           </ListItemButton>
         </ListItem>
         <ListItem key="allData" disablePadding>
           <ListItemButton to="/all-data">
             <ListItemIcon>
-              <PeopleAltIcon />
+              <PeopleAltIcon style={{color:"white"}}/>
             </ListItemIcon>
-            <ListItemText primary="All Data" />
+            <ListItemText primary="All Data" style={{color:"white"}} />
           </ListItemButton>
         </ListItem>
       </List>
       <Divider />
+    
     </div>
+
   );
 };
 

@@ -5,6 +5,80 @@ const admin = require("../../models/admin");
 const User = require("../../models/user");
 const Admin = require("../../models/admin");
 
+
+ // Make sure to replace this with the actual path to your Partner model
+
+ exports.adminupdate = async (req, res) => {
+  console.log(req.params);
+  try {
+    const update = await Partner.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          active: "success"
+        }
+      },
+      { new: true }
+    )
+    if (update) {
+      return res.status(201).json({
+        message: "request find successfully",
+        data: update
+
+      })
+
+    }
+  } catch (error) {
+    return res.status(400).json({
+      message: error
+    });
+  }
+}
+
+
+exports.admin_action = async (req, res) => {
+  // console.log(req);
+  try {
+    // Assuming req.body.active is the status you want to filter on
+    const pendinguser = await Partner.find({ active: 'pending' });
+
+    // console.log(pendinguser);
+
+    return res.status(200).json({
+      message: "Request find successful",
+      data: pendinguser,
+      // count: pendinguser.length,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+
+// exports.admin_action = async (req, res) => {
+//   console.log(req);
+//   try {
+//     const Partner = req.body.id
+//     // console.log(group);
+//     console.log(Partner);
+//     const pendinguser = await Partner.find({ active: req.body.active })
+//     console.log(pendinguser);
+//     return res.status(201).json({
+//       message: "request find successfully",
+//       data: pendinguser,
+//       // count: pendinguser.length
+//     })
+
+
+//   } catch (error) {
+//     return res.status(400).json({
+//       message: error
+//     });
+//   }
+// }
+
 exports.create_partner_account = async (req, res) => {
   // console.log(req.body);
   try {
@@ -39,7 +113,6 @@ exports.create_partner_account = async (req, res) => {
       email,
       password,
       employee,
-
       active,
     });
     // console.log(password);

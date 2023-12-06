@@ -62,14 +62,17 @@ const Layout = ({ children }) => {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          <Sidebar handleDrawerToggle={handleDrawerToggle} />
+          <Sidebar handleDrawerToggle={handleDrawerToggle} style={{backgroundColor:"#1890ff"}}  />
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth  },
+           backgroundColor:"#1890ff"
+
           }}
+    
           open
         >
           <Sidebar handleDrawerToggle={() => {}} />
