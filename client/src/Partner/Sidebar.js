@@ -41,7 +41,22 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
     }
   }, [props.candidate.loginData]);
 
-
+  useEffect(() => {
+    let loginData = props.data.loginData;
+    console.log(loginData);
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        setUser(loginData.data.data);
+          // Swal.fire("Good job!", "Login successfully.", "success");
+          //  navigate("/upload");
+      } else {
+        // Swal.fire("Sorry!", loginData.data.error , "error");
+        // seterrorpassword("Invalid Credentials");
+        // setError(true);
+      }
+    }
+  }, [props.data.loginData]);
+  
   return (
     <div
       style={{ backgroundColor: "#2c3e50", height: "100vh", padding: "10px" }}
@@ -104,7 +119,7 @@ Sidebar.propTypes = {
 
 // export default Sidebar;
 const mapStateToProps = (state) => {
-  return { candidate: state.candidate, employee: state.employee };
+  return { candidate: state.candidate, employee: state.employee,data: state.data };
 };
 
 const mapDispatchToProps = (dispatch) =>

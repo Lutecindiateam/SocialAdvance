@@ -7,7 +7,7 @@ import Dummy from "./dummy";
 import { CSVLink } from "react-csv";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestRecentlyJob, requestGetCandidate } from "../Redux/actions";
+import { requestAdminMonthJob, requestGetCandidate } from "../Redux/actions";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 
@@ -155,37 +155,43 @@ const TableData = (props) => {
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
         setUser(loginData.data.data);
+        props.requestGetCandidate({
+          id: loginData.data.data.id,
+          role: loginData.data.data.role,
+          token: loginData.data.data.token,
+        });
       }
-    } else {
-      Swal.fire("Sorry!", "Something went wrong.", "error");
-
-      // props.requestRecentlyJob({});
     }
   }, []);
 
   useEffect(() => {
-    let loginData = props.candidate.loginData;
+    let loginData = props.data.loginData;
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
         if(loginData?.data?.data.role === "admin"){
-        props.requestRecentlyJob({
-          token: loginData.data.data.token,
-        });
-      }else{
-        if (user.id) {
-          // console.log(user);
-          props.requestGetCandidate({
-            id: user.id,
-            role: user.role,
+          props.requestAdminMonthJob({
             token: loginData.data.data.token,
           });
         }
       }
-      }
-    } else {
-      props.requestRecentlyJob({});
     }
-  }, [user]);
+  }, [props.data.loginData]);
+
+  // useEffect(() => {
+  //   let loginData = props.candidate.loginData;
+  //   if (loginData !== undefined) {
+  //     if (loginData?.data?.status == "success") {
+  //       if (user.id) {
+  //         // console.log(user);
+  //         props.requestGetCandidate({
+  //           id: user.id,
+  //           role: user.role,
+  //           token: loginData.data.data.token,
+  //         });
+  //       }
+  //     }
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     let getCandidateData = props.candidate.getCandidateData;
@@ -200,14 +206,13 @@ const TableData = (props) => {
 
 
   useEffect(() => {
-    let recentlyjob = props.candidate.recentlyAddedJobData;
-    // console.log(recentlyjob);
-    if (recentlyjob !== undefined) {
-      if (recentlyjob?.data?.status == "success") {
-        setList(recentlyjob.data.data.response);
+    let monthWiseJobData = props.data.monthWiseJobData;
+    if (monthWiseJobData !== undefined) {
+      if (monthWiseJobData?.data?.status == "success") {
+        setList(monthWiseJobData.data.data.response);
       }
     }
-  }, [props.candidate.recentlyAddedJobData]);
+  }, [props.data.monthWiseJobData]);
 
   const onChange = (value) => {
     setStatus(value);
@@ -262,10 +267,10 @@ const TableData = (props) => {
 
 // export default Chirkut;
 const mapStateToProps = (state) => {
-  return { candidate: state.candidate, employee: state.employee };
+  return { candidate: state.candidate, employee: state.employee,data: state.data };
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ requestRecentlyJob, requestGetCandidate }, dispatch);
+  bindActionCreators({ requestAdminMonthJob, requestGetCandidate }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableData);

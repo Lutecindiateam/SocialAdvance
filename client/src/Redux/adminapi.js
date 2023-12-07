@@ -2,10 +2,37 @@
 import axios from "axios";
 const BASEURL = "http://localhost:5000/api"
 
+export const editCareer = (obj) => {
+  console.log(obj);
+  return axios
+    .patch("/adminaction/" + obj.id, obj.data)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+
 export const adminlogin = (obj) => {
   console.log(obj);
     return axios
-      .post(`${BASEURL}/upload-csv`, obj.data)
+    .post("/partner/admin/login", obj.data)
+    .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      });
+  };
+
+  export const monthJob = (obj) => {
+    // console.log(monthJob);
+    return axios
+      .get("/admin/allShops")
       .then((response) => {
         return response;
       })
@@ -15,17 +42,6 @@ export const adminlogin = (obj) => {
       });
   };
   
-  export const monthJob = (obj) => {
-    return axios
-      .get("/admin/monthlyJobCount")
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        console.log("Error", err.response.data.message);
-        return err.response;
-      });
-  };
   
   export const monthAppliedJob = (obj) => {
     return axios
@@ -327,17 +343,17 @@ export const adminlogin = (obj) => {
       });
   };
   
-  export const editCareer = (obj) => {
-    return axios
-      .patch("/admin/updatePartiCularCreer_levels/" + obj.id, obj.data)
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        console.log("Error", err.response.data.message);
-        return err.response;
-      });
-  };
+  // export const editCareer = (obj) => {
+  //   return axios
+  //     .patch("/admin/updatePartiCularCreer_levels/" + obj.id, obj.data)
+  //     .then((response) => {
+  //       return response;
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error", err.response.data.message);
+  //       return err.response;
+  //     });
+  // };
   
   export const deleteCareer = (obj) => {
     return axios

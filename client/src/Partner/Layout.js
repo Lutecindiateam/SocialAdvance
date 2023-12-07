@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {/* Bharat Online */}
+            Bharat Online
           </Typography>
         </Toolbar>
       </AppBar>
