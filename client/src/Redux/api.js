@@ -37,7 +37,7 @@ export const login = (obj) => {
 
 export const addResume = (obj) => {
   return axios
-    .post("/upload-csv", obj.data.formData, {
+    .post("/upload-csv/"+ obj.id, obj.data.formData, {
       headers: { Authorization: `Bearer ${obj.token}` },
     })
     .then((response) => {
@@ -51,11 +51,52 @@ export const addResume = (obj) => {
 };
 
 export const applyJobs = (obj) => {
-  // console.log(obj.data.formData);
   return axios
     .post("/shopData", obj.data.formData, {
       headers: { Authorization: `Bearer ${obj.token}` },
     })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const recentlyJob = (obj) => {
+  return axios
+    .get("allShops", {
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+export const getCandidate = (obj) => {
+  // console.log(obj);
+  return axios
+    .get("/specific/shopData/"+ obj.id,{
+      headers: { Authorization: `Bearer ${obj.token}` },
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
+
+
+export const getJobsSuggestions = (obj) => {
+  return axios
+    .get("/admin/shopData")
     .then((response) => {
       return response;
     })
@@ -103,20 +144,6 @@ export const googlelogin = (obj) => {
 //     });
 // };
 
-export const recentlyJob = (obj) => {
-  // console.log(obj)
-  return axios
-    .get("/job/Recentlyadded-jobs", {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
 
 // export const register = async(obj) => {
 //   // const { first_name, last_name, email, password, password_confirmation } = obj.data
@@ -306,17 +333,7 @@ export const getJobsCategoryWise = (obj) => {
     });
 };
 
-export const getJobsSuggestions = (obj) => {
-  return axios
-    .get("/suggestions")
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const jobDetails = (obj) => {
   return axios
@@ -412,20 +429,7 @@ export const deleteApplyJob = (obj) => {
     });
 };
 
-export const getCandidate = (obj) => {
-  // console.log(obj);
-  return axios
-    .get("/candidate/" + obj.id, {
-      headers: { Authorization: `Bearer ${obj.token}` },
-    })
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
+
 
 export const candidatelogo = (obj) => {
   return axios

@@ -62,6 +62,10 @@ const applySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    p_id:{
+      type:String,
+      required:true
+    }
   },
 
   { timestamps: true }

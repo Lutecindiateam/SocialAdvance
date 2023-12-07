@@ -1,4 +1,3 @@
-
 import React, { useMemo, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
@@ -6,17 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const Adminaction = () => {
   const [data, setData] = useState([]);
-//  console.log(data);
 
   const navigate = useNavigate();
-  // console.log(info);
 
   //for developement
 const BASEURL = "http://localhost:5000/api"
-
-//for production
-
-// const BASEURL = "/api"
 
   const admin_action = async (props) => {
     
@@ -24,10 +17,7 @@ const BASEURL = "http://localhost:5000/api"
       .then((res) => {
         // console.log(res);
         setData(res.data.data);
-        console.log(res.data.data);
-        //  setCount(res.data);
-        // console.log(res.data.active);
-        // console.log(res.data.data.id);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -37,37 +27,6 @@ const BASEURL = "http://localhost:5000/api"
     admin_action();
 
   }, []);
-//   useEffect(() => {
-//     const savedInfo = localStorage.getItem("info");
-//     if (savedInfo) {
-//       const parsedInfo = JSON.parse(savedInfo);
-//       admin_action(parsedInfo);
-//     }
-    // const savedCount = localStorage.getItem("count");
-    //   if (savedCount) {
-    //     const parsedCount = JSON.parse(savedCount);
-    //     setCount(parsedCount)
-    //     const total = parsedCount.data.reduce((acc, doc)=>acc+doc.amount,0)
-    //     //  console.log(total);
-    //     setAmount(total)
-    //     // user_management(savedCount);
-    //   }
-
-//   }, []);
-//   const fetchUserData = () => {
-//     const savedInfo = localStorage.getItem('info');
-//     if (savedInfo) {
-//       const parsedInfo = JSON.parse(savedInfo);
-//       admin_action(parsedInfo);
-//     }
-// else{
-//   navigate("/");
-// }
-    
-
-//   useEffect(() => {
-//     fetchUserData();
-//   }, []);
 
   const handleSubmit = (id) => {
     const patch = axios.patch(`${BASEURL}/adminupdate/${id}`)
@@ -101,9 +60,10 @@ const BASEURL = "http://localhost:5000/api"
         </TableHead>
         <TableBody>
           {data.map((data, index) => {
+            console.log(data);
             return (
               <>
-                {data && data.status == "success" ? (
+                {data && data.active == "success" ? (
                   <TableRow key={index}>
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>{data.name.toUpperCase()}</TableCell>

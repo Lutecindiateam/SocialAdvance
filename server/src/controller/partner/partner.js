@@ -9,7 +9,7 @@ const Admin = require("../../models/admin");
  // Make sure to replace this with the actual path to your Partner model
 
  exports.adminupdate = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   try {
     const update = await Partner.findOneAndUpdate(
       { _id: req.params.id },
@@ -40,9 +40,7 @@ exports.admin_action = async (req, res) => {
   // console.log(req);
   try {
     // Assuming req.body.active is the status you want to filter on
-    const pendinguser = await Partner.find({ active: 'pending' });
-
-    // console.log(pendinguser);
+    const pendinguser = await Partner.find();
 
     return res.status(200).json({
       message: "Request find successful",
@@ -91,14 +89,12 @@ exports.create_partner_account = async (req, res) => {
 
     const {
       name,
-
       phone,
       address,
       pincode,
       email,
       password,
       role,
-
       // active,
     } = req.body;
     // console.log(employee);
@@ -122,7 +118,7 @@ exports.create_partner_account = async (req, res) => {
     // _partner.selectedValue = employee;
 
     // console.log("USER :: ",_user)
-    console.log("_partner ::", _partner);
+    // console.log("_partner ::", _partner);
     const savedPartner = await _partner.save();
     if (savedPartner) {
       return res.status(201).json({
@@ -167,7 +163,7 @@ exports.authenticate_partner = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
-                data: { id: user.id, token: token },
+                data: { id: user.id, token: token, role:user.role },
                 message: "Sign In success",
                 status: "success",
               });

@@ -99,11 +99,13 @@ const UploadData = (props) => {
       formData.append("csvFile", csvFile);
       try {
         props.requestAddResume({
+          id: user.id,
           data: {
             formData,
             token: user.token,
           },
         });
+        setLoader(true);
       } catch (error) {
         console.error(error);
         alert("Error uploading CSV file.");
@@ -120,6 +122,7 @@ const UploadData = (props) => {
       // console.log(addresume?.data?.status == "success");
       if (addresume?.data?.status == "success") {
         Swal.fire("Good job!", "CSV File Uploaded successfully.", "success");
+        setLoader(false);
         document.getElementById("csvFileInput").value = "";
         props.candidate.addResumeData = undefined;
         // props.candidate.resumeData = undefined;
@@ -135,6 +138,7 @@ const UploadData = (props) => {
       }
     }
   }, [props.candidate.addResumeData]);
+
   useEffect(() => {
     let loginData = props.candidate.loginData;
     if (loginData !== undefined) {
@@ -169,6 +173,7 @@ const UploadData = (props) => {
       formData.append("subcategory", values.subcategory);
       formData.append("leadStatus", values.leadStatus);
       formData.append("status", values.status);
+      formData.append("p_id", user.id);
 
       props.requestApplyJob({
         data: {
@@ -176,6 +181,7 @@ const UploadData = (props) => {
           token: user.token,
         },
       });
+      setLoader(true);
       // const resp = await dispatch(addProduct(formData));
       // console.log(formData.address);
       // if (resp.message === "success") {
@@ -549,7 +555,7 @@ const UploadData = (props) => {
                     onChange={handleFileChange}
                   />
                   <br />
-                  <Button
+                  {/* <Button
                     className="mt-2"
                     type="primary"
                     htmlType="submit"
@@ -557,7 +563,14 @@ const UploadData = (props) => {
                     onClick={downloadTemplate}
                   >
                     Download CSV Template
-                  </Button>
+                  </Button> */}
+                  <a
+                    href="#"
+                    className="ant-btn ant-btn-primary ant-btn-round mt-2"
+                    onClick={downloadTemplate}
+                  >
+                    Download CSV Template
+                  </a>
                   <br />
                   <Button
                     className="mt-2"
