@@ -11,22 +11,7 @@ function CustomTable({ list, total, status }) {
 	const dispatch = useDispatch();
 	const [columnItems, setColumnItems] = useState([]);
 	const [columnsToShow, setColumnsToShow] = useState([]);
-// console.log(columnItems);
-//    console.log(list[0]);
-//    const list =  [
-// 	{
-// 	  id: 1,
-// 	  businessName: "ABC Inc.",
-// 	  mobileNumber: "123-456-7890",
-// 	  address: "123 Main St",
-// 	  pincode: "12345",
-// 	  city: "City1",
-// 	  state: "State1",
-// 	  category: "Category1",
-// 	  subcategory: { id: 101, name: "Subcategory1" },
-// 	},
-//   ]
-//    console.log(columnsToShow);
+
    const columns = [
 	{
 		title: "BusinessName",
@@ -220,3 +205,4 @@ const Chirkut = (props) => {
 };
 
 export default Chirkut;
+

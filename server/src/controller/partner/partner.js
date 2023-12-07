@@ -9,7 +9,7 @@ const Admin = require("../../models/admin");
  // Make sure to replace this with the actual path to your Partner model
 
  exports.adminupdate = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   try {
     const update = await Partner.findOneAndUpdate(
       { _id: req.params.id },
@@ -40,9 +40,9 @@ exports.admin_action = async (req, res) => {
   // console.log(req);
   try {
     // Assuming req.body.active is the status you want to filter on
-    const pendinguser = await Partner.find({ active: 'pending' });
+    const pendinguser = await Partner.find();
 
-    // console.log(pendinguser);
+    console.log(pendinguser);
 
     return res.status(200).json({
       message: "Request find successful",
@@ -122,7 +122,7 @@ exports.create_partner_account = async (req, res) => {
     // _partner.selectedValue = employee;
 
     // console.log("USER :: ",_user)
-    console.log("_partner ::", _partner);
+    // console.log("_partner ::", _partner);
     const savedPartner = await _partner.save();
     if (savedPartner) {
       return res.status(201).json({

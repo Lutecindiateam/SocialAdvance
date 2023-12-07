@@ -28,7 +28,9 @@ import PartnerSignUp from "./Partner/signup"
 import PartnerForget from "./Partner/forget"
 import Table from './Partner/table';
 import Chirkut from './Partner/table';
-import Adminaction from './Partner/adminaction';
+// import Adminaction from './Partner/adminaction';
+import DemoLine from './Partner/calender';
+import ColumnSelectorGrid from './Partner/Admin/adminaction';
 
 const router = createBrowserRouter(
   [
@@ -127,7 +129,11 @@ const router = createBrowserRouter(
     // },
     {
       path: "/adminaction",
-      element: <Adminaction />
+      element: <ColumnSelectorGrid />
+    },
+    {
+      path: "/calender",
+      element: <DemoLine />
     }
 
 

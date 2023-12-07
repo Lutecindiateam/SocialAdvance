@@ -52,7 +52,7 @@ const Sidebar = ({ handleDrawerToggle }) => {
                 </div>
    
           
-                <Divider />
+                <Divider light/>
       <List>
         <ListItem key="upload" disablePadding>
           <ListItemButton  to="/upload">
