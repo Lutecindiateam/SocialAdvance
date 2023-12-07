@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AdminLogin from "./Admin/signin";
 import AdminSignUp from "./Admin/signup";
@@ -6,62 +6,63 @@ import HomePage from "./Homepage";
 import UserLogin from "./User/signin";
 import UserSignUp from "./User/signup";
 import UserList from "./Admin/alluser";
-import FormExample from "./common/user"
-import Poster from "./common/poster"
-import App from './Homepage';
-import FormExampleAdmin from './common/admin';
-import Drawer from './common/drawer';
+import FormExample from "./common/user";
+import Poster from "./common/poster";
+import App from "./Homepage";
+import FormExampleAdmin from "./common/admin";
+import Drawer from "./common/drawer";
 // import { ExportToExcel } from './Admin/csv';
-import Sheet from './common/excel';
-import Forget from './Admin/forget';
-import UserForget from './User/forget';
-import AssoProfile from './Admin/profile'
-import Information from './Trains/homepage';
-import Weather from './Weather/page';
-import Cricket from './Cricket/Cricket';
-import UploadData from './Partner/UploadData';
-import Sidebar from './Partner/Sidebar';
-import Home, { AllData } from './Partner/AllData';
-import PartnerLogin from './Partner/signin';
+import Sheet from "./common/excel";
+import Forget from "./Admin/forget";
+import UserForget from "./User/forget";
+import AssoProfile from "./Admin/profile";
+import Information from "./Trains/homepage";
+import Weather from "./Weather/page";
+import Cricket from "./Cricket/Cricket";
+import UploadData from "./Partner/UploadData";
+import Sidebar from "./Partner/Sidebar";
+import Home, { AllData } from "./Partner/AllData";
+import PartnerLogin from "./Partner/signin";
 // import Main from "./Partner/Main"
+
 import PartnerSignUp from "./Partner/signup"
 import PartnerForget from "./Partner/forget"
-import Table from './Partner/table';
-import Chirkut from './Partner/table';
-// import Adminaction from './Partner/adminaction';
-import DemoLine from './Partner/calender';
 import ColumnSelectorGrid from './Partner/Admin/adminaction';
+import TableData from "./Partner/table";
+import Adminaction from "./Partner/Admin/adminaction";
+import PartnerAdminLogin from "./Partner/Admin/Login";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <App />,
-    },
-    {
-      path: "/userlogin",
-      element: < UserLogin />,
-    },
-    {
-      path: "/adminlogin",
-      element: <AdminLogin />,
-    },
-    {
-      path: "/adminsignup",
-      element: <AdminSignUp />,
-    },
-    {
-      path: "/form/:id",
-      element: < FormExample />,
-    },
-    {
-      path: "/userlist",
-      element: <UserList />,
-    },
-    {
-      path: "/usersignup",
-      element: < UserSignUp />,
-    },
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/userlogin",
+    element: <UserLogin />,
+  },
+  {
+    path: "/adminlogin",
+    element: <AdminLogin />,
+  },
+  {
+    path: "/adminsignup",
+    element: <AdminSignUp />,
+  },
+  {
+    path: "/form/:id",
+    element: <FormExample />,
+  },
+  {
+    path: "/userlist",
+    element: <UserList />,
+  },
+  {
+    path: "/usersignup",
+    element: <UserSignUp />,
+  },
+
 
     {
       path: "/poster/:id",
@@ -108,10 +109,6 @@ const router = createBrowserRouter(
       element: <UploadData />
     },
     {
-      path: "/all-data",
-      element: <Chirkut />
-    },
-    {
       path: "/partnerlogin",
       element: <PartnerLogin />
     },
@@ -134,11 +131,23 @@ const router = createBrowserRouter(
     {
       path: "/calender",
       element: <DemoLine />
-    }
+    },
+ 
+  {
+    path: "/all-data",
+    element: <TableData />,
+  },
+ 
 
-
-  ]
-);
+  //Admin Routes
+  {
+    path: "/partner/admin",
+    element: <PartnerAdminLogin />,
+  },
+  {
+    path: "/adminaction",
+    element: <Adminaction />,
+  },
+]);
 
 export default router;
-

@@ -3,6 +3,7 @@ const upload = require('../../models/partner/upload');
 const csv = require('csv-parser');
 
 exports.uploadProductsFromCSV = (req, res) => {
+  // console.log(req.params);
   try {
     const csvData = [];
 // console.log(req.file);
@@ -15,7 +16,7 @@ exports.uploadProductsFromCSV = (req, res) => {
         const savedProducts = [];
 
         for (const row of csvData) {
-          // console.log(row);
+          console.log(row);
 
           const product = {
             businessName: row.BusinessName,
@@ -27,7 +28,8 @@ exports.uploadProductsFromCSV = (req, res) => {
             category: row.Category,
             subcategory: row.Subcategory,
             leadStatus: row.LeadStatus,
-            status: row.Status
+            status: row.Status,
+            p_id:req.params.id
           };
 // console.log(product);
           // Save the product one at a time

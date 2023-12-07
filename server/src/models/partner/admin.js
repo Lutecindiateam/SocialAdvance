@@ -2,20 +2,19 @@ const mongoose = require("mongoose");
 
 const applySchema = new mongoose.Schema(
   {
-    businessName: {
+    name: {
       type: String,
+
       required: true,
       trim: true,
     },
 
+    phone: {
+      type: Number,
+      trim: true,
+    },
     address: {
       type: String,
-
-      required: true,
-      trim: true,
-    },
-    mobile: {
-      type: Number,
 
       required: true,
       trim: true,
@@ -26,49 +25,33 @@ const applySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    city: {
+    email: {
       type: String,
 
       required: true,
       trim: true,
     },
-    state: {
+    password: {
       type: String,
 
       required: true,
       trim: true,
     },
-    category: {
-      type: String,
 
+    active: {
+      type: String,
+      default: "pending",
+      // required: true,
+      trim: true,
+    },
+    role: {
+      type: String,
       required: true,
       trim: true,
     },
-    subcategory: {
-      type: String,
-
-      required: true,
-      trim: true,
-    },
-    leadStatus: {
-      type: String,
-
-      required: true,
-      trim: true,
-    },
-    status: {
-      type: String,
-
-      required: true,
-      trim: true,
-    },
-    p_id:{
-      type:String,
-      required:true
-    }
   },
 
   { timestamps: true }
 );
 
-module.exports = mongoose.model("upload", applySchema);
+module.exports = mongoose.model("partnerAdmin", applySchema);

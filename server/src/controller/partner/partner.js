@@ -42,7 +42,6 @@ exports.admin_action = async (req, res) => {
     // Assuming req.body.active is the status you want to filter on
     const pendinguser = await Partner.find();
 
-    // console.log(pendinguser);
 
     return res.status(200).json({
       message: "Request find successful",
@@ -91,14 +90,12 @@ exports.create_partner_account = async (req, res) => {
 
     const {
       name,
-
       phone,
       address,
       pincode,
       email,
       password,
       role,
-
       // active,
     } = req.body;
     // console.log(employee);
@@ -167,7 +164,7 @@ exports.authenticate_partner = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
-                data: { id: user.id, token: token },
+                data: { id: user.id, token: token, role:user.role },
                 message: "Sign In success",
                 status: "success",
               });
