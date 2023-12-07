@@ -42,7 +42,7 @@ exports.admin_action = async (req, res) => {
     // Assuming req.body.active is the status you want to filter on
     const pendinguser = await Partner.find();
 
-    console.log(pendinguser);
+    // console.log(pendinguser);
 
     return res.status(200).json({
       message: "Request find successful",
