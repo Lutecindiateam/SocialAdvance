@@ -5,36 +5,51 @@ const admin = require("../../models/admin");
 const User = require("../../models/user");
 const Admin = require("../../models/admin");
 
+// Make sure to replace this with the actual path to your Partner model
+exports.getPartnerProfile = async (req, res) => {
+  try {
+    console.log(req.params);
+    const id = req.params.id;
+    const response = await Partner.findById(id).exec();
+    console.log(response);
+    if (response) {
+      return res.status(200).json({
+        status: "success",
+        data: response,
+        message: "profile get succesfully",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Internal problem" });
+  }
+};
 
- // Make sure to replace this with the actual path to your Partner model
-
- exports.adminupdate = async (req, res) => {
+exports.adminupdate = async (req, res) => {
   // console.log(req.params);
   try {
     const update = await Partner.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-          active: "success"
-        }
+          active: "success",
+        },
       },
       { new: true }
-    )
+    );
+    console.log(update);
     if (update) {
       return res.status(201).json({
         message: "request find successfully",
-        data: update
-
-      })
-
+        data: update,
+        status: "success",
+      });
     }
   } catch (error) {
     return res.status(400).json({
-      message: error
+      message: error,
     });
   }
-}
-
+};
 
 exports.admin_action = async (req, res) => {
   // console.log(req);
@@ -45,6 +60,7 @@ exports.admin_action = async (req, res) => {
     return res.status(200).json({
       message: "Request find successful",
       data: pendinguser,
+      status: "success",
       // count: pendinguser.length,
     });
   } catch (error) {
@@ -53,7 +69,6 @@ exports.admin_action = async (req, res) => {
     });
   }
 };
-
 
 // exports.admin_action = async (req, res) => {
 //   console.log(req);
@@ -68,7 +83,6 @@ exports.admin_action = async (req, res) => {
 //       data: pendinguser,
 //       // count: pendinguser.length
 //     })
-
 
 //   } catch (error) {
 //     return res.status(400).json({
@@ -147,7 +161,12 @@ exports.authenticate_partner = async (req, res) => {
       if (!user) {
         return res.status(400).json({ error: "Invalid email or password" });
       } else if (user.active == "pending") {
-        return res.status(400).json({ error: "Your request is currently pending. Please contact our support team." });
+        return res
+          .status(400)
+          .json({
+            error:
+              "Your request is currently pending. Please contact our support team.",
+          });
       }
 
       bcrypt.compare(password, user.password, function (error, isMatch) {
@@ -163,7 +182,7 @@ exports.authenticate_partner = async (req, res) => {
             { expiresIn: 31556926 },
             (err, token) => {
               return res.status(200).json({
-                data: { id: user.id, token: token, role:user.role },
+                data: { id: user.id, token: token, role: user.role },
                 message: "Sign In success",
                 status: "success",
               });

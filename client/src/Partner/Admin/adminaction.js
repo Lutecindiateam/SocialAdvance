@@ -11,16 +11,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestAdminEditCareer } from "../../Redux/actions";
+import {
+  requestAdminEditCareer,
+  requestAdminMonthAppliedJob,
+} from "../../Redux/actions";
 
 const Adminaction = (props) => {
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
-
-  const navigate = useNavigate();
-
-  //for developement
-  const BASEURL = "http://localhost:5000/api";
 
   useEffect(() => {
     let loginData = props.data.loginData;
@@ -31,47 +29,36 @@ const Adminaction = (props) => {
     }
   }, [props.data.loginData]);
 
-  console.log(user);
-
-
-  const admin_action = async (props) => {
-    // props.requestAdminEditCareer({
-    //   id: user.id,
-    // });
-
-    const get= axios.post(`${BASEURL}/adminaction`, props)
-      .then((res) => {
-        // console.log(res);
-        setData(res.data.data);
-
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+  const handleSubmit = (id) => {
+    props.requestAdminEditCareer({
+      id: id,
+    });
   };
   useEffect(() => {
-    admin_action();
-  }, []);
+    props.requestAdminMonthAppliedJob();
+  }, [props.data.editCareerData]);
 
-  const handleSubmit = (id) => {
-    const patch = axios
-      .patch(`${BASEURL}/adminupdate/${id}`)
-      .then((res) => {
-        admin_action();
-        return res;
-        console.log(res);
-        setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  // console.log(count);
+  useEffect(() => {
+    let monthWiseAppliedjobData = props.data.monthWiseAppliedjobData;
+    if (monthWiseAppliedjobData !== undefined) {
+      if (monthWiseAppliedjobData?.data?.status === "success") {
+        setData(monthWiseAppliedjobData.data.data);
+      }
+    }
+  }, [props.data.monthWiseAppliedjobData]);
+
+  useEffect(() => {
+    let editCareerData = props.data.editCareerData;
+    console.log(editCareerData);
+    if (editCareerData !== undefined) {
+      if (editCareerData?.data?.status === "success") {
+        // admin_action();
+      }
+    }
+  }, [props.data.editCareerData]);
 
   return (
     <>
-      {/* <h3>Contributors: {count && count.count}</h3>
-      <h3>Total Contribution: {amount}</h3> */}
       <br />
       <br />
       <Table>
@@ -93,7 +80,6 @@ const Adminaction = (props) => {
         </TableHead>
         <TableBody>
           {data.map((data, index) => {
-            console.log(data);
             return (
               <>
                 {data && data.active == "success" ? (
@@ -141,6 +127,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ requestAdminEditCareer }, dispatch);
+  bindActionCreators(
+    { requestAdminEditCareer, requestAdminMonthAppliedJob },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Adminaction);

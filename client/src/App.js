@@ -21,7 +21,7 @@ import Weather from "./Weather/page";
 import Cricket from "./Cricket/Cricket";
 import UploadData from "./Partner/UploadData";
 import Sidebar from "./Partner/Sidebar";
-import Home, { AllData } from "./Partner/AllData";
+// import Home, { AllData } from "./Partner/AllData";
 import PartnerLogin from "./Partner/signin";
 // import Main from "./Partner/Main"
 import PartnerSignUp from "./Partner/signup";

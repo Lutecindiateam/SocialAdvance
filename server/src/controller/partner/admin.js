@@ -3,6 +3,23 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const upload = require("../../models/partner/upload");
 
+exports.getPartnerAdminProfile = async(req, res) => {
+  try{
+    const id = req.params.id;
+    const response = await partnerAdmin.findById(id).exec()
+    if(response){
+      return res.status(200).json({
+        status: "success",
+        data: response,
+        message: "Admin profile get succesfully"
+      })
+    }
+// console.log(response);
+  }catch(err){
+    return res.status(500).json({ message: "Internal problem" });
+  }
+}
+
 exports.partnerAdminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;

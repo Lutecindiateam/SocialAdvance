@@ -5,8 +5,8 @@ const { submit_form, getallusers, getsingleusers, getallinfo } = require('../con
 const { uploadProductsFromCSV, uploadShopData } = require('../controller/partner/partnerupload');
 const multer = require('multer');
 const path = require('path');
-const { authenticate_partner, forget_partner, create_partner_account, admin_action, adminupdate } = require('../controller/partner/partner');
-const { getShopsData, getSpecShopData, partnerAdminLogin } = require('../controller/partner/admin');
+const { authenticate_partner, forget_partner, create_partner_account, admin_action, adminupdate, getPartnerProfile } = require('../controller/partner/partner');
+const { getShopsData, getSpecShopData, partnerAdminLogin, getPartnerAdminProfile } = require('../controller/partner/admin');
 const { requireSignin } = require('../common-middleware');
 
 const router =express.Router();
@@ -43,14 +43,17 @@ router.post("/getprofile", getprofile)
 router.post("/authenticate_partner", authenticate_partner)
 router.post("/create_partner_account", create_partner_account)
 router.patch("/forget_partner", forget_partner)
-//API for partner
+//API for partner 
 router.post("/partner/admin/login",partnerAdminLogin)
-router.post("/adminaction",requireSignin, admin_action)
+router.get("/adminaction", admin_action)
 router.post("/shopData",upload.single('file'), uploadShopData)
 router.post("/upload-csv/:id", upload.single('csvFile'), uploadProductsFromCSV )
 router.patch('/adminupdate/:id',adminupdate);
 router.get("/admin/allShops", getShopsData)
-router.get("/specific/shopData/:id", getSpecShopData)
+router.get("/specific/shopData/:id", getSpecShopData);
+router.get("/partner/admin/profile/:id", getPartnerAdminProfile);
+router.get("/profile/:id", getPartnerProfile);
+
 module.exports= router;
-  
+
 
