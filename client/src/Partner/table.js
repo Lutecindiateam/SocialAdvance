@@ -4,7 +4,11 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Dummy from "./dummy";
-
+import { bindActionCreators } from "redux";
+import {
+  requestAdminMonthJob, requestGetCandidate
+} from "../Redux/actions";
+import { connect } from "react-redux";
 
 const TableData = () => {
   const [data, setData] = useState([]);

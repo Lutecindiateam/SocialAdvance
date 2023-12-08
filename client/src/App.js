@@ -128,11 +128,7 @@ const router = createBrowserRouter([
       path: "/adminaction",
       element: <ColumnSelectorGrid />
     },
-    {
-      path: "/calender",
-      element: <DemoLine />
-    },
- 
+
   {
     path: "/all-data",
     element: <TableData />,
