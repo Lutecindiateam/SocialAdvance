@@ -76,6 +76,7 @@ const Layout = ({ children, ...props }) => {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          backgroundColor:"#2c3e50"
         }}
       >
         <Toolbar>

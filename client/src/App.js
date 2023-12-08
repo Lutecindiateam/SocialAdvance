@@ -24,11 +24,14 @@ import Sidebar from "./Partner/Sidebar";
 // import Home, { AllData } from "./Partner/AllData";
 import PartnerLogin from "./Partner/signin";
 // import Main from "./Partner/Main"
-import PartnerSignUp from "./Partner/signup";
-import PartnerForget from "./Partner/forget";
+
+import PartnerSignUp from "./Partner/signup"
+import PartnerForget from "./Partner/forget"
+import ColumnSelectorGrid from './Partner/Admin/adminaction';
 import TableData from "./Partner/table";
 import Adminaction from "./Partner/Admin/adminaction";
 import PartnerAdminLogin from "./Partner/Admin/Login";
+
 
 const router = createBrowserRouter([
   {
@@ -60,66 +63,81 @@ const router = createBrowserRouter([
     element: <UserSignUp />,
   },
 
-  {
-    path: "/poster/:id",
-    element: <Poster />,
-  },
-  {
-    path: "/form/admin/:id",
-    element: <FormExampleAdmin />,
-  },
-  {
-    path: "/csv/:id",
-    element: <Sheet />,
-  },
-  {
-    path: "/Admin/forget",
-    element: <Forget />,
-  },
-  {
-    path: "/User/forget",
-    element: <UserForget />,
-  },
-  {
-    path: "/profile",
-    element: <AssoProfile />,
-  },
-  {
-    path: "/train",
-    element: <Information />,
-  },
-  {
-    path: "/weather",
-    element: <Weather />,
-  },
-  {
-    path: "/cricket",
-    element: <Cricket />,
-  },
-  {
-    path: "/main",
-    element: <Sidebar />,
-  },
-  {
-    path: "/upload",
-    element: <UploadData />,
-  },
+
+    {
+      path: "/poster/:id",
+      element: < Poster />,
+    },
+    {
+      path: "/form/admin/:id",
+      element: < FormExampleAdmin />,
+    },
+    {
+      path: "/csv/:id",
+      element: < Sheet />,
+    },
+    {
+      path: "/Admin/forget",
+      element: < Forget />,
+    },
+    {
+      path: "/User/forget",
+      element: < UserForget />,
+    },
+    {
+      path: "/profile",
+      element: <AssoProfile />,
+    },
+    {
+      path: "/train",
+      element: <Information />
+    },
+    {
+      path: "/weather",
+      element: <Weather />
+    },
+    {
+      path: "/cricket",
+      element: <Cricket />
+    },
+    {
+      path: "/main",
+      element: <Sidebar />
+    },
+    {
+      path: "/upload",
+      element: <UploadData />
+    },
+    {
+      path: "/partnerlogin",
+      element: <PartnerLogin />
+    },
+    {
+      path: "/partnersignup",
+      element: <PartnerSignUp />
+    },
+    {
+      path: "/partnerforget",
+      element: <PartnerForget />
+    },
+    // {
+    //   path: "/table",
+    //   element: <Chirkut />
+    // },
+    {
+      path: "/adminaction",
+      element: <ColumnSelectorGrid />
+    },
+    {
+      path: "/calender",
+      element: <DemoLine />
+    },
+ 
   {
     path: "/all-data",
     element: <TableData />,
   },
-  {
-    path: "/partnerlogin",
-    element: <PartnerLogin />,
-  },
-  {
-    path: "/partnersignup",
-    element: <PartnerSignUp />,
-  },
-  {
-    path: "/partnerforget",
-    element: <PartnerForget />,
-  },
+ 
 
   //Admin Routes
   {

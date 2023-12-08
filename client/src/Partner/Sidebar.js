@@ -62,23 +62,32 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
     >
       {/* <Toolbar /> */}
 
-      <div
-        className="style"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <strong style={{ color: "gold", fontWeight: "bold" }}>Bharat</strong>
-        <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
+              
+              
+          
+                <strong style={{ color: "gold", fontWeight: "bold"}}>
+                Bharat
+                </strong>
+                <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
+               
+               
+            
+                <strong style={{ color: "orange	", fontWeight: "bold" }}>
+                 On
+                </strong>
+                <strong style={{ color: "white	", fontWeight: "bold" }}>
+              li
+                </strong>
+                <strong style={{ color: "green	", fontWeight: "bold" }}>
+                 ne
+                </strong>
+               
+               
+                {/* </div> */}
+   
+          
+                // <Divider light/>
 
-        <strong style={{ color: "orange	", fontWeight: "bold" }}>On</strong>
-        <strong style={{ color: "white	", fontWeight: "bold" }}>li</strong>
-        <strong style={{ color: "green	", fontWeight: "bold" }}>ne</strong>
-      </div>
-
-      <Divider />
       <List>
         <ListItem key="upload" disablePadding>
           <ListItemButton to="/upload">
@@ -107,7 +116,7 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
          </ListItem>
          ) : (null)}
       </List>
-      <Divider />
+      // <Divider />
     </div>
   );
 };

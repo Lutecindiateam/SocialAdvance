@@ -548,6 +548,7 @@ const UploadData = (props) => {
                     shape="round"
                     loading={loader}
                     onClick={onClickLoading}
+                   style={{backgroundColor:"#2c3e50"}} 
                   >
                     Add Data
                   </Button>
@@ -576,6 +577,7 @@ const UploadData = (props) => {
                     htmlType="submit"
                     shape="round"
                     onClick={downloadTemplate}
+                    style={{backgroundColor:"#2c3e50"}} 
                   >
                     Download CSV Template
                   </Button> */}
@@ -594,6 +596,7 @@ const UploadData = (props) => {
                     shape="round"
                     loading={loader}
                     onClick={handleUpload}
+                    style={{backgroundColor:"#2c3e50"}} 
                   >
                     Import From CSV
                   </Button>
