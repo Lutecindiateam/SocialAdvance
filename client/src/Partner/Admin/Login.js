@@ -10,14 +10,9 @@ import { bindActionCreators } from "redux";
 import { requestAdminLogin, userLogout } from "../../Redux/actions";
 import Swal from "sweetalert2";
 
-//for developement
-const BASEURL = "http://localhost:5000/api";
 
-//for production
 
-// const BASEURL = "/api"
 const PartnerAdminLogin = (props) => {
-  // export default function PartnerLogin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorpassword, seterrorpassword] = useState("");
@@ -32,11 +27,6 @@ const PartnerAdminLogin = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // props.userLogout();
-    // const form = {
-    //   email,
-    //   password,
-    // }
 
     props.requestAdminLogin({
         data: {
@@ -44,35 +34,6 @@ const PartnerAdminLogin = (props) => {
           password:password,
         },
       });
-    // props.requestLogin({
-    //   data: {
-    //     email: email,
-    //     password: password,
-    //   },
-    // });
-    // fetch(`${BASEURL}/authenticate_partner`, {
-    //   method: "POST",
-    //   crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-        // if (data.status === "Partner" && data.active === "success") {
-        //   alert("Login successful");
-        //   localStorage.setItem("info", JSON.stringify(data));
-        //    navigate(`/upload`);
-        // } else {
-    //       alert(data.error);
-    //     }
-    //   });
   }
 
 

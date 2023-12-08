@@ -21,7 +21,12 @@ import { Fragment, useEffect, useState } from "react";
 import styles from "./AddProd.module.css";
 import Layout from "./Layout";
 import { bindActionCreators } from "redux";
-import { requestAddResume, requestApplyJob } from "../Redux/actions";
+import {
+  requestAddResume,
+  requestApplyJob,
+  requestAdminGetProfile,
+  requestJobDetails
+} from "../Redux/actions";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -116,17 +121,46 @@ const UploadData = (props) => {
   };
 
   useEffect(() => {
+    let loginData = props.candidate.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status === "success") {
+        setUser(loginData.data.data);
+      } 
+    }
+  }, [props.candidate.loginData]);
+
+  useEffect(() => {
+    let loginData = props.data.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        if (loginData?.data?.data.role === "admin") {
+          setUser(loginData.data.data);
+        }
+      }
+    }
+  }, [props.data.loginData]);
+
+
+  useEffect(() => {
+    if (user.role === "admin") {
+      props.requestAdminGetProfile({
+        id: user.id,
+      });
+    } else {
+      props.requestJobDetails({
+        id: user.id,
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
     let addresume = props.candidate.addResumeData;
-    // console.log(props);
     if (addresume !== undefined) {
-      // console.log(addresume?.data?.status == "success");
       if (addresume?.data?.status == "success") {
         Swal.fire("Good job!", "CSV File Uploaded successfully.", "success");
         setLoader(false);
         document.getElementById("csvFileInput").value = "";
         props.candidate.addResumeData = undefined;
-        // props.candidate.resumeData = undefined;
-        // navigate("/upload");
       } else {
         Swal.fire(
           "Error!",
@@ -139,26 +173,7 @@ const UploadData = (props) => {
     }
   }, [props.candidate.addResumeData]);
 
-  useEffect(() => {
-    let loginData = props.candidate.loginData;
-    if (loginData !== undefined) {
-      if (loginData?.data?.status === "success") {
-        setUser(loginData.data.data);
-        // props.requestEmpGetCandidate({
-        //   id: loginData.data.data.id,
-        // });
-        // props.requestFormField({
-        //   token: loginData.data.data.token,
-        // });
-      } else {
-        // localStorage.setItem("link", "/addResumeForm");
-        // navigate("/login");
-      }
-    } else {
-      // localStorage.setItem("link", "/addResumeForm");
-      // navigate("/login");
-    }
-  }, [props.candidate.loginData]);
+ 
 
   const onFinish = async (values) => {
     try {
@@ -596,10 +611,17 @@ const UploadData = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { candidate: state.candidate, employee: state.employee };
+  return {
+    candidate: state.candidate,
+    employee: state.employee,
+    data: state.data,
+  };
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ requestAddResume, requestApplyJob }, dispatch);
+  bindActionCreators(
+    { requestAddResume, requestApplyJob, requestAdminGetProfile,requestJobDetails },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadData);

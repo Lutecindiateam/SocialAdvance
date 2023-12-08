@@ -37,11 +37,11 @@ export const login = (obj) => {
 
 export const addResume = (obj) => {
   return axios
-    .post("/upload-csv/"+ obj.id, obj.data.formData, {
+    .post("/upload-csv/" + obj.id, obj.data.formData, {
       headers: { Authorization: `Bearer ${obj.token}` },
     })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       return response;
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ export const recentlyJob = (obj) => {
 export const getCandidate = (obj) => {
   // console.log(obj);
   return axios
-    .get("/specific/shopData/"+ obj.id,{
+    .get("/specific/shopData/" + obj.id, {
       headers: { Authorization: `Bearer ${obj.token}` },
     })
     .then((response) => {
@@ -92,7 +92,6 @@ export const getCandidate = (obj) => {
       return err.response;
     });
 };
-
 
 export const getJobsSuggestions = (obj) => {
   return axios
@@ -106,6 +105,17 @@ export const getJobsSuggestions = (obj) => {
     });
 };
 
+export const jobDetails = (obj) => {
+  return axios
+    .get("/profile/" + obj.id)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error", err.response.data.message);
+      return err.response;
+    });
+};
 export const googlelogin = (obj) => {
   return axios
     .post("/candidate/google-login", obj.data)
@@ -143,7 +153,6 @@ export const googlelogin = (obj) => {
 //       return err.response;
 //     });
 // };
-
 
 // export const register = async(obj) => {
 //   // const { first_name, last_name, email, password, password_confirmation } = obj.data
@@ -335,18 +344,6 @@ export const getJobsCategoryWise = (obj) => {
 
 
 
-export const jobDetails = (obj) => {
-  return axios
-    .get("/job/" + obj.id)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log("Error", err.response.data.message);
-      return err.response;
-    });
-};
-
 // export const addComment = (obj) => {
 //   return axios
 //     .post("/job/comments", obj.data)
@@ -428,8 +425,6 @@ export const deleteApplyJob = (obj) => {
       return err.response;
     });
 };
-
-
 
 export const candidatelogo = (obj) => {
   return axios

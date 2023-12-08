@@ -44,7 +44,6 @@ import {
 const Sidebar = ({handleDrawerToggle, ...props}) => {
   const [user, setUser] = useState({})
 
-
   useEffect(() => {
     let loginData = props.candidate.loginData;
     if (loginData !== undefined) {
@@ -62,7 +61,7 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
 
   useEffect(() => {
     let loginData = props.data.loginData;
-    console.log(loginData);
+    // console.log(loginData);
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
         setUser(loginData.data.data);

@@ -3,9 +3,9 @@ import axios from "axios";
 const BASEURL = "http://localhost:5000/api"
 
 export const editCareer = (obj) => {
-  console.log(obj);
+  // console.log(obj);
   return axios
-    .patch("/adminaction/" + obj.id, obj.data)
+    .patch("/adminupdate/" + obj.id, obj.data)
     .then((response) => {
       return response;
     })
@@ -41,11 +41,10 @@ export const adminlogin = (obj) => {
         return err.response;
       });
   };
-  
-  
+
   export const monthAppliedJob = (obj) => {
     return axios
-      .get("/admin/monthlyappliedJobCount")
+      .get("/adminaction")
       .then((response) => {
         return response;
       })
@@ -54,6 +53,48 @@ export const adminlogin = (obj) => {
         return err.response;
       });
   };
+
+  export const getProfile = (obj) => {
+    console.log(obj);
+    return axios
+      .get("/partner/admin/profile/" + obj.id)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      });
+  };
+  //*************END*********//
+
+
+  export const addDegree = (obj) => {
+    // console.log(obj);
+    return axios
+      .post("/adminaction", obj.data)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      });
+  };
+  
+  export const adminforgot1 = (obj) => {
+    return axios
+      .post("/adminaction", obj.data)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        return err.response;
+      });
+  };
+  
+  
   
   export const categoryJob = (obj) => {
     return axios
@@ -103,17 +144,7 @@ export const adminlogin = (obj) => {
       });
   };
   
-  export const adminforgot1 = (obj) => {
-    return axios
-      .post("/admin/forgetpassword", obj.data)
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        console.log("Error", err.response.data.message);
-        return err.response;
-      });
-  };
+ 
   
   export const adminforgot2 = (obj) => {
     return axios
@@ -139,17 +170,7 @@ export const adminlogin = (obj) => {
       });
   };
   
-  export const getProfile = (obj) => {
-    return axios
-      .get("/admin/simple/" + obj.id)
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        console.log("Error", err.response.data.message);
-        return err.response;
-      });
-  };
+  
   
   export const updateProfile = (obj) => {
     //name
@@ -455,17 +476,7 @@ export const adminlogin = (obj) => {
       });
   };
   
-  export const addDegree = (obj) => {
-    return axios
-      .post("/admin/addDegreeLevel", obj.data)
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        console.log("Error", err.response.data.message);
-        return err.response;
-      });
-  };
+  
   
   export const editDegree = (obj) => {
     return axios

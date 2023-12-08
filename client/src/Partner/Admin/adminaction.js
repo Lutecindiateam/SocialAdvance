@@ -1,38 +1,64 @@
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Button,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {
+  requestAdminEditCareer,
+  requestAdminMonthAppliedJob,
+} from "../../Redux/actions";
 
-const ColumnSelectorGrid = () => {
+const Adminaction = (props) => {
   const [data, setData] = useState([]);
-  const navigate = useNavigate();
-  const BASEURL = 'http://localhost:5000/api';
-
-  const adminAction = async () => {
-    try {
-      const response = await axios.post(`${BASEURL}/adminaction`);
-      setData(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    adminAction();
-  }, []);
-
-  const handleAccept = async (id) => {
-    try {
-      await axios.patch(`${BASEURL}/adminupdate/${id}`);
-      adminAction();
-    } catch (error) {
-      console.log(error);
+    let loginData = props.data.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status === "success") {
+        setUser(loginData.data.data);
+      }
     }
+  }, [props.data.loginData]);
+
+  const handleSubmit = (id) => {
+    props.requestAdminEditCareer({
+      id: id,
+    });
   };
+  useEffect(() => {
+    props.requestAdminMonthAppliedJob();
+  }, [props.data.editCareerData]);
+
+  useEffect(() => {
+    let monthWiseAppliedjobData = props.data.monthWiseAppliedjobData;
+    if (monthWiseAppliedjobData !== undefined) {
+      if (monthWiseAppliedjobData?.data?.status === "success") {
+        setData(monthWiseAppliedjobData.data.data);
+      }
+    }
+  }, [props.data.monthWiseAppliedjobData]);
+
+  useEffect(() => {
+    let editCareerData = props.data.editCareerData;
+    console.log(editCareerData);
+    if (editCareerData !== undefined) {
+      if (editCareerData?.data?.status === "success") {
+        // admin_action();
+      }
+    }
+  }, [props.data.editCareerData]);
 
   const columns = [
     { field: 'id', headerName: 'Sr.No.', width: 100 },
@@ -72,6 +98,19 @@ const ColumnSelectorGrid = () => {
       />
     </div>
   );
+
 };
 
-export default ColumnSelectorGrid;
+// export default Adminaction;
+const mapStateToProps = (state) => {
+  return { data: state.data };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    { requestAdminEditCareer, requestAdminMonthAppliedJob },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Adminaction);
+
