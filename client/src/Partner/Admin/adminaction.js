@@ -1,8 +1,8 @@
+
+
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import {
   Table,
   TableHead,
@@ -18,6 +18,7 @@ import {
   requestAdminEditCareer,
   requestAdminMonthAppliedJob,
 } from "../../Redux/actions";
+import Layout from '../Layout';
 
 const Adminaction = (props) => {
   const [data, setData] = useState([]);
@@ -32,7 +33,7 @@ const Adminaction = (props) => {
     }
   }, [props.data.loginData]);
 
-  const handleSubmit = (id) => {
+  const handleAccept = (id) => {
     props.requestAdminEditCareer({
       id: id,
     });
@@ -87,6 +88,7 @@ const Adminaction = (props) => {
   }));
 
   return (
+    <Layout>
     <div style={{ height: '100%', width: '100%' }}>
       <DataGrid
         rows={rows}
@@ -97,8 +99,8 @@ const Adminaction = (props) => {
         }}
       />
     </div>
+    </Layout>
   );
-
 };
 
 // export default Adminaction;
