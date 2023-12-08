@@ -9,6 +9,7 @@ import {
   requestAdminMonthJob, requestGetCandidate
 } from "../Redux/actions";
 import { connect } from "react-redux";
+import Layout from './Layout';
 
 const TableData = () => {
   const [data, setData] = useState([]);
@@ -45,6 +46,7 @@ const TableData = () => {
   console.log(rows);
 
   return (
+    <Layout>
     <div style={{ height: '100%', width: '100%' }}>
       <DataGrid
         rows={rows}
@@ -56,6 +58,7 @@ const TableData = () => {
       />
 
     </div>
+    </Layout>
   );
 };
 
