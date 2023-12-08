@@ -61,12 +61,9 @@ const Layout = ({ children, ...props }) => {
 
   useEffect(() => {
     let jobDetailsData = props.candidate.jobDetailsData;
-    // console.log(jobDetailsData);
     if (jobDetailsData !== undefined) {
       if (jobDetailsData?.data?.status == "success") {
-        // if (jobDetailsData?.data?.data.role === "admin") {
           setUser(jobDetailsData.data.data);
-        // }
       }
     }
   }, [props.data.jobDetailsData]);
