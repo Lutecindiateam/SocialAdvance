@@ -1,5 +1,3 @@
-// Sidebar.js
-
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@material-ui/core";
@@ -15,12 +13,31 @@ import ListItemText from "@mui/material/ListItemText";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from '@mui/icons-material/Home';
 import { Typography } from "antd";
 import "./sidebar.css";
 import ob from "./image/ob.jpg";
 import { bindActionCreators } from "redux";
 import { requestAddResume, requestApplyJob } from "../Redux/actions";
 import { connect } from "react-redux";
+import {
+	CheckOutlined,
+	CodeSandboxOutlined,
+	FileDoneOutlined,
+	FileOutlined,
+	FileSyncOutlined,
+	FlagOutlined,
+	HomeOutlined,
+	MinusSquareOutlined,
+	ShoppingCartOutlined,
+	SettingOutlined,
+	ShoppingOutlined,
+	UnorderedListOutlined,
+	UsergroupAddOutlined,
+	UserOutlined,
+	UserSwitchOutlined,
+	WalletOutlined,
+} from "@ant-design/icons";
 
 const Sidebar = ({handleDrawerToggle, ...props}) => {
   const [user, setUser] = useState({})
@@ -58,28 +75,38 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
   
   return (
     <div
-      style={{ backgroundColor: "#2c3e50", height: "100vh", padding: "10px" }}
+      style={{ backgroundColor: "#2c3e50", height: "100vh", paddingTop: "20px" }}
     >
       {/* <Toolbar /> */}
-
       <div
         className="style"
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+
         }}
       >
+
         <strong style={{ color: "gold", fontWeight: "bold" }}>Bharat</strong>
         <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
 
         <strong style={{ color: "orange	", fontWeight: "bold" }}>On</strong>
         <strong style={{ color: "white	", fontWeight: "bold" }}>li</strong>
         <strong style={{ color: "green	", fontWeight: "bold" }}>ne</strong>
+       
       </div>
 
       <Divider />
       <List>
+      <ListItem key="dashboard" disablePadding>
+          <ListItemButton to="/dashboard">
+            <ListItemIcon>
+              <HomeIcon style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" style={{ color: "white" }} />
+          </ListItemButton>
+        </ListItem>
         <ListItem key="upload" disablePadding>
           <ListItemButton to="/upload">
             <ListItemIcon>
@@ -106,6 +133,30 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
            </ListItemButton>
          </ListItem>
          ) : (null)}
+         <ListItem key="account" disablePadding>
+          <ListItemButton to="/account">
+            <ListItemIcon>
+              <WalletOutlined style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText primary="Account" style={{ color: "white" }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="report" disablePadding>
+          <ListItemButton to="/report">
+            <ListItemIcon>
+              <FlagOutlined style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText primary="Report" style={{ color: "white" }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="setting" disablePadding>
+          <ListItemButton to="/setting">
+            <ListItemIcon>
+              <SettingOutlined style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText primary="Setting" style={{ color: "white" }} />
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
     </div>

@@ -1,5 +1,5 @@
-
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from "axios";
 import {
   Table,
@@ -16,6 +16,8 @@ import {
   requestAdminEditCareer,
   requestAdminMonthAppliedJob,
 } from "../../Redux/actions";
+import Layout from '../Layout';
+
 
 const Adminaction = (props) => {
   const [data, setData] = useState([]);
@@ -30,8 +32,8 @@ const Adminaction = (props) => {
     }
   }, [props.data.loginData]);
 
-  const handleSubmit = (id) => {
-    props.requestAdminEditCareer({
+  const handleAccept = (id) => {
+        props.requestAdminEditCareer({
       id: id,
     });
   };
@@ -58,67 +60,47 @@ const Adminaction = (props) => {
     }
   }, [props.data.editCareerData]);
 
+
+  const columns = [
+    { field: 'id', headerName: 'Sr.No.', width: 100 },
+    { field: 'name', headerName: 'Name', flex: 1 },
+    { field: 'role', headerName: 'Role', flex: 1 },
+    { field: 'active', headerName: 'Status', flex: 1, renderCell: (params) => <span style={{ color: params.row.active === 'success' ? 'green' : 'red' }}>{params.value}</span> },
+    {
+      field: 'action',
+      headerName: 'Action',
+      flex: 1,
+      renderCell: (params) => (
+        <Button variant="contained" onClick={() => handleAccept(params.row._id)} disabled={params.row.active === 'success'}>
+          Accept
+        </Button>
+      ),
+    },
+  ];
+
+  const rows = data.map((item, index) => ({
+    id: index + 1,
+    name: item.name.toUpperCase(),
+    role: item.role.toUpperCase(),
+    active: item.active,
+    status: item.status,
+    _id: item._id,
+  }));
+
   return (
-    <>
-      <br />
-      <br />
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <b>Sr.No.</b>
-            </TableCell>
-            <TableCell>
-              <b>Name</b>
-            </TableCell>
-            <TableCell>
-              <b>Status</b>
-            </TableCell>
-            <TableCell>
-              <b>Action</b>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((data, index) => {
-            return (
-              <>
-                {data && data.active == "success" ? (
-                  <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{data.name.toUpperCase()}</TableCell>
-                    <TableCell style={{ color: "green" }}>
-                      {data.active}
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="contained" disabled>
-                        Accept
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{data.name}</TableCell>
-                    <TableCell style={{ color: "red" }}>
-                      {data.active}
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
-                        onClick={() => handleSubmit(data._id)}
-                      >
-                        Accept
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </>
+    <Layout>
+    <div style={{ height: '100%', width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+      />
+    </div>
+    </Layout>
+
   );
 };
 

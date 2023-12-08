@@ -1,27 +1,90 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import Dummy from "./dummy";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, Dropdown, Menu, Segmented, Table } from "antd";
+import { useEffect } from "react";
+import { CSVLink } from "react-csv";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  requestAdminMonthJob, requestGetCandidate
-} from "../Redux/actions";
+import { requestAdminMonthJob, requestGetCandidate } from "../Redux/actions";
 import { connect } from "react-redux";
-import Layout from './Layout';
+import Swal from "sweetalert2";
+import Layout from "./Layout";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-const TableData = () => {
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
-//   const BASEURL = 'http://localhost:5000/api';
-  const list = Dummy()
 
+const TableData = (props) => {
+  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
+  const [user, setUser] = useState({});
+  const [list, setList] = useState([]);
+  const [status, setStatus] = useState("true");
+
+  useEffect(() => {
+    let loginData = props.candidate.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        setUser(loginData.data.data);
+        props.requestGetCandidate({
+          id: loginData.data.data.id,
+          role: loginData.data.data.role,
+          token: loginData.data.data.token,
+        });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    let loginData = props.data.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        if(loginData?.data?.data.role === "admin"){
+          props.requestAdminMonthJob({
+            token: loginData.data.data.token,
+          });
+        }
+      }
+    }
+  }, [props.data.loginData]);
+
+
+  useEffect(() => {
+    let getCandidateData = props.candidate.getCandidateData;
+    // console.log(getCandidateData);
+    if (getCandidateData !== undefined) {
+      if (getCandidateData?.data?.status === "success") {
+        setList(getCandidateData.data.data.response);
+
+      }
+    }
+  }, [props.candidate.getCandidateData]);
+
+
+  useEffect(() => {
+    let monthWiseJobData = props.data.monthWiseJobData;
+    if (monthWiseJobData !== undefined) {
+      if (monthWiseJobData?.data?.status == "success") {
+        setList(monthWiseJobData.data.data.response);
+      }
+    }
+  }, [props.data.monthWiseJobData]);
+
+
+
+
+  useEffect(() => {
+    let loginData = props.candidate.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status === "success") {
+        setUser(loginData.data.data);
+      }
+    }
+  }, [props.candidate.loginData]);
 
   const columns = [
     { field: 'id', headerName: 'Sr.No.', width: 100 },
-    { field: 'businessname', headerName: 'Business Name', flex: 1 },
-    { field: 'mobilenumber', headerName: 'Mobile Number', flex: 1 },
+    { field: 'businessName', headerName: 'Business Name', flex: 1 },
+    { field: 'mobile', headerName: 'Mobile Number', flex: 1 },
 	{ field: 'address', headerName: 'Address', flex: 1 },
 	{ field: 'pincode', headerName: 'Pincode', flex: 1 },
 { field: 'city', headerName: 'City', flex: 1 },
@@ -30,12 +93,13 @@ const TableData = () => {
 	{ field: 'subcategory', headerName: 'Subcategory', flex: 1 },
   ];
 
+  
   const rows = list.map((item, index) =>
 
    ({
     id: index + 1,
-    businessname: item.businessname,
-    mobilenumber: item.mobilenumber,
+    businessName: item.businessName,
+    mobile: item.mobile,
     address: item.address,
     pincode: item.pincode,
     city: item.city,
@@ -43,11 +107,11 @@ const TableData = () => {
 	category: item.category,
 	subcategory: item.subcategory
   }));
-  console.log(rows);
 
   return (
     <Layout>
     <div style={{ height: '100%', width: '100%' }}>
+     
       <DataGrid
         rows={rows}
         columns={columns}
@@ -56,7 +120,6 @@ const TableData = () => {
           Toolbar: GridToolbar,
         }}
       />
-
     </div>
     </Layout>
   );
