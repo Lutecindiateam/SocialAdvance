@@ -31,6 +31,9 @@ import ColumnSelectorGrid from './Partner/Admin/adminaction';
 import TableData from "./Partner/table";
 import Adminaction from "./Partner/Admin/adminaction";
 import PartnerAdminLogin from "./Partner/Admin/Login";
+import DemoBar from "./Partner/calender";
+import Dashboard from "./Partner/dashboard";
+import QuickLinks from "./Partner/quick";
 
 
 const router = createBrowserRouter([
@@ -128,11 +131,6 @@ const router = createBrowserRouter([
       path: "/adminaction",
       element: <ColumnSelectorGrid />
     },
-    {
-      path: "/calender",
-      element: <DemoLine />
-    },
- 
   {
     path: "/all-data",
     element: <TableData />,
@@ -148,6 +146,18 @@ const router = createBrowserRouter([
     path: "/adminaction",
     element: <Adminaction />,
   },
+  {
+    path:"/demobar",
+    element:<DemoBar/>
+  },
+  {
+    path:"/dashboard",
+    element:<Dashboard/>
+  },
+  {
+    path:"/quick",
+    element:<QuickLinks />
+  }
 ]);
 
 export default router;
