@@ -116,6 +116,18 @@ export const jobDetails = (obj) => {
       return err.response;
     });
 };
+
+
+
+
+
+//*********END********/
+
+
+
+
+
+
 export const googlelogin = (obj) => {
   return axios
     .post("/candidate/google-login", obj.data)

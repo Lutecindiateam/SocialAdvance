@@ -34,6 +34,7 @@ import PartnerAdminLogin from "./Partner/Admin/Login";
 import DemoBar from "./Partner/calender";
 import Dashboard from "./Partner/dashboard";
 import QuickLinks from "./Partner/quick";
+import Logout from "./Partner/Logout";
 
 
 const router = createBrowserRouter([
@@ -157,6 +158,10 @@ const router = createBrowserRouter([
   {
     path:"/quick",
     element:<QuickLinks />
+  },
+  {
+    path:"/logout",
+    element:<Logout />
   }
 ]);
 

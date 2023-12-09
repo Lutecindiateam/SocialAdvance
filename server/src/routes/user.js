@@ -46,8 +46,8 @@ router.patch("/forget_partner", forget_partner)
 //API for partner 
 router.post("/partner/admin/login",partnerAdminLogin)
 router.get("/adminaction", admin_action)
-router.post("/shopData",upload.single('file'), uploadShopData)
-router.post("/upload-csv/:id", upload.single('csvFile'), uploadProductsFromCSV )
+router.post("/shopData",requireSignin, upload.single('file'), uploadShopData)
+router.post("/upload-csv/:id",requireSignin, upload.single('csvFile'), uploadProductsFromCSV )
 router.patch('/adminupdate/:id',adminupdate);
 router.get("/admin/allShops", getShopsData)
 router.get("/specific/shopData/:id", getSpecShopData);

@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { bindActionCreators } from "redux";
-import { requestAdminMonthJob, requestAdminGetProfile } from "../Redux/actions";
+import { requestAdminMonthJob, requestAdminGetProfile ,requestJobDetails} from "../Redux/actions";
 import { connect } from "react-redux";
 const drawerWidth = 240;
 
@@ -19,6 +19,8 @@ const Layout = ({ children, ...props }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [showUserProfile, setShowUserProfile] = useState(false);
   const [user, setUser] = useState({});
+  const [profile, setProfile] = useState({});
+
 
   const handleToggleClick = () => {
     setShowUserProfile(!showUserProfile);
@@ -49,11 +51,44 @@ const Layout = ({ children, ...props }) => {
   };
 
   useEffect(() => {
+    let loginData = props.candidate.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status === "success") {
+        setUser(loginData.data.data);
+      } 
+    }
+  }, [props.candidate.loginData]);
+
+  useEffect(() => {
+    let loginData = props.data.loginData;
+    if (loginData !== undefined) {
+      if (loginData?.data?.status == "success") {
+        if (loginData?.data?.data.role === "admin") {
+          setUser(loginData.data.data);
+        }
+      }
+    }
+  }, [props.data.loginData]);
+
+
+  useEffect(() => {
+    if (user.role === "admin") {
+      props.requestAdminGetProfile({
+        id: user.id,
+      });
+    } else {
+      props.requestJobDetails({
+        id: user.id,
+      });
+    }
+  }, [user]);
+  
+  useEffect(() => {
     let getProfileData = props.data.getProfileData;
     if (getProfileData !== undefined) {
       if (getProfileData?.data?.status == "success") {
         if (getProfileData?.data?.data.role === "admin") {
-          setUser(getProfileData.data.data);
+          setProfile(getProfileData.data.data);
         }
       }
     }
@@ -63,10 +98,10 @@ const Layout = ({ children, ...props }) => {
     let jobDetailsData = props.candidate.jobDetailsData;
     if (jobDetailsData !== undefined) {
       if (jobDetailsData?.data?.status == "success") {
-          setUser(jobDetailsData.data.data);
+        setProfile(jobDetailsData.data.data);
       }
     }
-  }, [props.data.jobDetailsData]);
+  }, [props.candidate.jobDetailsData]);
   
   return (
     <Box sx={{ display: "flex" }}>
@@ -96,9 +131,9 @@ const Layout = ({ children, ...props }) => {
           {showUserProfile && (
             <div style={profileStyles}>
               {/* User information goes here */}
-              <p style={{color: "black"}}>User Name: {user.name}</p>
-              <p style={{color: "black"}}>Email: {user.email}</p>
-              <p style={{color: "black"}}>Role: {user.role}</p>
+              <p style={{color: "black"}}>Name: {profile.name}</p>
+              <p style={{color: "black"}}>Email: {profile.email}</p>
+              <p style={{color: "black"}}>Role: {profile.role}</p>
             </div>
           )}
         </Toolbar>
@@ -172,6 +207,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ requestAdminMonthJob, requestAdminGetProfile }, dispatch);
+  bindActionCreators({ requestAdminMonthJob, requestAdminGetProfile,requestJobDetails }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

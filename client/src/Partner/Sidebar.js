@@ -12,6 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LogoutIcon from '@mui/icons-material/Logout';
 import AddIcon from "@mui/icons-material/Add";
 import HomeIcon from '@mui/icons-material/Home';
 import { Typography } from "antd";
@@ -155,6 +156,14 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
               <SettingOutlined style={{ color: "white" }} />
             </ListItemIcon>
             <ListItemText primary="Setting" style={{ color: "white" }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="LogOut" disablePadding>
+          <ListItemButton to="/logout">
+            <ListItemIcon>
+              <LogoutIcon style={{ color: "white" }} />
+            </ListItemIcon>
+            <ListItemText primary="LogOut" style={{ color: "white" }} />
           </ListItemButton>
         </ListItem>
       </List>
