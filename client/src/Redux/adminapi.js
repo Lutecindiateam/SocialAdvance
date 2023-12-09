@@ -55,7 +55,7 @@ export const adminlogin = (obj) => {
   };
 
   export const getProfile = (obj) => {
-    console.log(obj);
+    // console.log(obj);
     return axios
       .get("/partner/admin/profile/" + obj.id)
       .then((response) => {

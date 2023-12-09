@@ -1,7 +1,5 @@
-
-
-import React, { useEffect, useState } from 'react';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import React, { useEffect, useState } from "react";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import axios from "axios";
 import {
   Table,
@@ -18,7 +16,7 @@ import {
   requestAdminEditCareer,
   requestAdminMonthAppliedJob,
 } from "../../Redux/actions";
-import Layout from '../Layout';
+import Layout from "../Layout";
 
 const Adminaction = (props) => {
   const [data, setData] = useState([]);
@@ -51,27 +49,42 @@ const Adminaction = (props) => {
     }
   }, [props.data.monthWiseAppliedjobData]);
 
-  useEffect(() => {
-    let editCareerData = props.data.editCareerData;
-    console.log(editCareerData);
-    if (editCareerData !== undefined) {
-      if (editCareerData?.data?.status === "success") {
-        // admin_action();
-      }
-    }
-  }, [props.data.editCareerData]);
+  // useEffect(() => {
+  //   let editCareerData = props.data.editCareerData;
+  //   // console.log(editCareerData);
+  //   if (editCareerData !== undefined) {
+  //     if (editCareerData?.data?.status === "success") {
+  //       // admin_action();
+  //     }
+  //   }
+  // }, [props.data.editCareerData]);
 
   const columns = [
-    { field: 'id', headerName: 'Sr.No.', width: 100 },
-    { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'role', headerName: 'Role', flex: 1 },
-    { field: 'active', headerName: 'Status', flex: 1, renderCell: (params) => <span style={{ color: params.row.active === 'success' ? 'green' : 'red' }}>{params.value}</span> },
+    { field: "id", headerName: "Sr.No.", width: 100 },
+    { field: "name", headerName: "Name", flex: 1 },
+    { field: "role", headerName: "Role", flex: 1 },
     {
-      field: 'action',
-      headerName: 'Action',
+      field: "active",
+      headerName: "Status",
       flex: 1,
       renderCell: (params) => (
-        <Button variant="contained" onClick={() => handleAccept(params.row._id)} disabled={params.row.active === 'success'}>
+        <span
+          style={{ color: params.row.active === "success" ? "green" : "red" }}
+        >
+          {params.value}
+        </span>
+      ),
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      flex: 1,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          onClick={() => handleAccept(params.row._id)}
+          disabled={params.row.active === "success"}
+        >
           Accept
         </Button>
       ),
@@ -89,16 +102,16 @@ const Adminaction = (props) => {
 
   return (
     <Layout>
-    <div style={{ height: '100%', width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-        components={{
-          Toolbar: GridToolbar,
-        }}
-      />
-    </div>
+      <div style={{ height: "100%", width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          components={{
+            Toolbar: GridToolbar,
+          }}
+        />
+      </div>
     </Layout>
   );
 };
@@ -115,4 +128,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Adminaction);
-

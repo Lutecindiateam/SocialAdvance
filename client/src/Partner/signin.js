@@ -32,12 +32,7 @@ const PartnerLogin = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // props.userLogout();
-    // const form = {
-    //   email,
-    //   password,
-    // }
-
+    
     
     props.requestLogin({
       data: {
@@ -45,47 +40,15 @@ const PartnerLogin = (props) => {
         password: password,
       },
     });
-    // fetch(`${BASEURL}/authenticate_partner`, {
-    //   method: "POST",
-    //   crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-        // if (data.status === "Partner" && data.active === "success") {
-        //   alert("Login successful");
-        //   localStorage.setItem("info", JSON.stringify(data));
-        //    navigate(`/upload`);
-        // } else {
-    //       alert(data.error);
-    //     }
-    //   });
+   
   }
 
   useEffect(() => {
     let loginData = props.candidate.loginData;
-    // console.log(loginData);
-    if (loginData !== undefined) {
+    if (loginData !== undefined) {    
       if (loginData?.data?.status == "success") {
-        // if (loginData?.data.data.status === "Partner" && loginData?.data.data.active === "success") {
           Swal.fire("Good job!", "Login successfully.", "success");
-          // localStorage.setItem("info", JSON.stringify(data));
-           navigate("/upload");
-        // }
-        // console.log(localStorage.getItem("link"));
-        // if (localStorage.getItem("link")) {
-        //   navigate(localStorage.getItem("link"));
-        // } else {
-        //   navigate("/upload");
-        // }
+           navigate("/dashboard");
       } else {
         Swal.fire("Sorry!", loginData.data.error , "error");
         seterrorpassword("Invalid Credentials");

@@ -12,12 +12,6 @@ import {
 } from "antd";
 import { toast } from "react-toastify";
 import { Fragment, useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addProduct } from "../../redux/actions/product/addProductAction";
-// import { loadAllProductBrand } from "../../redux/actions/productBrand/getProductBrandAction";
-// import { loadAllProductCategory } from "../../redux/actions/productCategory/getProductCategoryAction";
-// import { loadAllProductSubCategory } from "../../redux/actions/productSubCategory/getProductSubCategory";
-// import UploadMany from "../Card/UploadMany";
 import styles from "./AddProd.module.css";
 import Layout from "./Layout";
 import { bindActionCreators } from "redux";
@@ -39,7 +33,7 @@ const UploadData = (props) => {
     "Contacted",
     "Engaged",
     "KYC Completed",
-    "Accpted",
+    "accepted",
     "MorefollowUp",
     "NotAccepted",
   ];
@@ -105,9 +99,9 @@ const UploadData = (props) => {
       try {
         props.requestAddResume({
           id: user.id,
+          token: user.token,
           data: {
             formData,
-            token: user.token,
           },
         });
         setLoader(true);
@@ -141,17 +135,17 @@ const UploadData = (props) => {
   }, [props.data.loginData]);
 
 
-  useEffect(() => {
-    if (user.role === "admin") {
-      props.requestAdminGetProfile({
-        id: user.id,
-      });
-    } else {
-      props.requestJobDetails({
-        id: user.id,
-      });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user.role === "admin") {
+  //     props.requestAdminGetProfile({
+  //       id: user.id,
+  //     });
+  //   } else {
+  //     props.requestJobDetails({
+  //       id: user.id,
+  //     });
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     let addresume = props.candidate.addResumeData;
@@ -191,9 +185,9 @@ const UploadData = (props) => {
       formData.append("p_id", user.id);
 
       props.requestApplyJob({
+        token: user.token,
         data: {
           formData,
-          token: user.token,
         },
       });
       setLoader(true);

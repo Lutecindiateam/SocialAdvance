@@ -39,6 +39,8 @@ import Account from "./Partner/account";
 import Report from "./Partner/report";
 import Setting from "./Partner/setting";
 import Header from "./Partner/Header";
+import Logout from "./Partner/Logout";
+
 
 const router = createBrowserRouter([
   {
@@ -182,6 +184,10 @@ const router = createBrowserRouter([
   {
     path:"/header",
     element:<Header />
+  },
+{
+    path:"/logout",
+    element:<Logout />
   }
 ]);
 

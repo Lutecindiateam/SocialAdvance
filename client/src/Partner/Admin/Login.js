@@ -39,11 +39,11 @@ const PartnerAdminLogin = (props) => {
 
   useEffect(() => {
     let loginData = props.data.loginData;
-    console.log(loginData);
+    // console.log(loginData);
     if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
           Swal.fire("Good job!", "Login successfully.", "success");
-           navigate("/upload");
+           navigate("/dashboard");
       } else {
         Swal.fire("Sorry!", loginData.data.error , "error");
         seterrorpassword("Invalid Credentials");
