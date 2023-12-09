@@ -8,7 +8,7 @@ const Admin = require("../../models/admin");
 // Make sure to replace this with the actual path to your Partner model
 exports.getPartnerProfile = async (req, res) => {
   try {
-    console.log(req.params);
+    // console.log(req.params);
     const id = req.params.id;
     const response = await Partner.findById(id).exec();
     console.log(response);
