@@ -21,12 +21,7 @@ import {
 } from "../Redux/actions";
 import Swal from "sweetalert2";
 
-//for developement
-const BASEURL = "http://localhost:5000/api";
 
-//for production
-
-// const BASEURL = "/api"
 
 const PartnerSignUp = (props) => {
   const [name, setName] = useState("");
@@ -81,13 +76,16 @@ const PartnerSignUp = (props) => {
       },
     });
   };
+
   useEffect(() => {
     let registerdata = props.candidate.registerData;
     if (registerdata !== undefined) {
       if (registerdata?.data?.status === "success") {
         props.candidate.registerData = undefined;
         Swal.fire("Good job!", "Registration successfully.", "success");
-        navigate("/partnerlogin");
+   
+          navigate("/partnerlogin");
+
       } else {
         Swal.fire("Sorry!", "Email is already used.", "error");
         seterroremail("Email is already used.");

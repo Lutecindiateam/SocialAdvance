@@ -10,12 +10,7 @@ import { bindActionCreators } from "redux";
 import { requestLogin, userLogout } from "../Redux/actions";
 import Swal from "sweetalert2";
 
-//for developement
-const BASEURL = "http://localhost:5000/api";
 
-//for production
-
-// const BASEURL = "/api"
 const PartnerLogin = (props) => {
   // export default function PartnerLogin(props) {
   const [email, setEmail] = useState("");
@@ -32,7 +27,7 @@ const PartnerLogin = (props) => {
   useEffect(() => {
     props.userLogout();
   }, []);
-  
+
   async function handleSubmit(e) {
     e.preventDefault();
 

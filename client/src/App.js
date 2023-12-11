@@ -34,7 +34,13 @@ import PartnerAdminLogin from "./Partner/Admin/Login";
 import DemoBar from "./Partner/calender";
 import Dashboard from "./Partner/dashboard";
 import QuickLinks from "./Partner/quick";
+import Page404 from "./Partner/404/404Page";
+import Account from "./Partner/account";
+import Report from "./Partner/report";
+import Setting from "./Partner/setting";
+import Header from "./Partner/Header";
 import Logout from "./Partner/Logout";
+import Pie from "./Partner/pie";
 
 
 const router = createBrowserRouter([
@@ -136,7 +142,16 @@ const router = createBrowserRouter([
     path: "/all-data",
     element: <TableData />,
   },
- 
+  {
+    path: "*",
+    element: <Page404 />,
+  },
+  {
+    path: "/account",
+    element: <Account />,
+  },
+
+  
 
   //Admin Routes
   {
@@ -160,9 +175,26 @@ const router = createBrowserRouter([
     element:<QuickLinks />
   },
   {
+    path:"/report",
+    element:<Report />
+  },
+  {
+    path:"/setting",
+    element:<Setting />
+  },
+  {
+    path:"/header",
+    element:<Header />
+  },
+{
     path:"/logout",
     element:<Logout />
-  }
+  },
+  // {
+  //   path:"/pie",
+  //   element:<Pie />
+  // },
+
 ]);
 
 export default router;

@@ -18,11 +18,11 @@ export default function QuickLinks({ sideNavOpenKeysHandler }) {
 
   return (
     <div className="quick-links-wrapper">
-      <p className="quick-links-title">Quick Links</p>
+    
 
       <div className="quick-links-container">
         <QuickLinksContainer
-          link="/product"
+          link="/upload"
           bg="#344D6740"
           linkName="Upload Data"
           icon={
@@ -32,7 +32,7 @@ export default function QuickLinks({ sideNavOpenKeysHandler }) {
           }
         />
         <QuickLinksContainer
-          link="/supplier"
+          link="/all-data"
           bg="#6ECCAF40"
           linkName="All Data"
           icon={
@@ -42,7 +42,7 @@ export default function QuickLinks({ sideNavOpenKeysHandler }) {
           }
         />
         <QuickLinksContainer
-          link="/customer"
+          link="*"
           bg="#FD841F40"
           linkName="Account"
           icon={
@@ -52,7 +52,7 @@ export default function QuickLinks({ sideNavOpenKeysHandler }) {
           }
         />
         <QuickLinksContainer
-          link="/account"
+          link="*"
           bg="#00ABB340"
           linkName="Report"
           icon={
@@ -61,29 +61,10 @@ export default function QuickLinks({ sideNavOpenKeysHandler }) {
               class="bi bi-wallet-fill quick-links-icon"></i>
           }
         />
-        {/* <QuickLinksContainer
-          link="/account/trial-balance"
-          bg="#8CB8ED40"
-          linkName="REPORT"
-          icon={
-            <i
-              style={{ color: "#8CB8ED" }}
-              class="bi bi-flag-fill quick-links-icon"></i>
-          }
-        /> */}
-        {/* <QuickLinksContainer
-          link="/hr/staffs"
-          bg="#E14D2A40"
-          linkName="HR"
-          icon={
-            <i
-              style={{ color: "#E14D2A" }}
-              class="bi bi-person-circle quick-links-icon"></i>
-          }
-        /> */}
+      
 
         <QuickLinksContainer
-          link="/invoice-setting"
+          link="*"
           bg="#0D4C9240"
           linkName="SETTINGS"
           icon={

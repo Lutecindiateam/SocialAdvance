@@ -228,19 +228,30 @@ function App(props) {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>
           </FormControl> */}
-          <select value={selectedOption} onChange={handleOptionChange}>
-            <option value="" disabled>Social</option>
-            {/* <optgroup label="Login"> */}
-              <option value="/adminlogin">E-receipt Association</option>
-              <option value="/userlogin">E-receipt Member</option>
-              <option value="/cricket">Sport</option>
-              <option value="/weather">Weather</option>
-
-            {/* </optgroup> */}
-           
+          <select
+            value={selectedOption}
+            onChange={handleOptionChange}
+            style={{ backgroundColor: "white", borderRadius:"10px" }}
+          >
+            <option value="" disabled>
+              Social
+            </option>
+            <optgroup label="E-receipt ">
+            <option value="/adminlogin">Association</option>
+            <option value="/userlogin">Member</option>
+            </optgroup>
+            <option value="/cricket">Sport</option>
+            <option value="/weather">Weather</option>          
           </select>
-          <select value={selectedOption} onChange={handleOptionChange}>
-            <option value="" disabled>Sales Portal</option>
+          &nbsp; &nbsp;
+          <select
+            value={selectedOption}
+            onChange={handleOptionChange}
+            style={{ backgroundColor: "white", borderRadius:"10px" }}
+          >
+            <option value="" disabled>
+              Sales Portal
+            </option>
             {/* <optgroup label="Activities"> */}
             <option value="/partnerlogin">Partner</option>
             <option value="/partner/admin">Admin</option>

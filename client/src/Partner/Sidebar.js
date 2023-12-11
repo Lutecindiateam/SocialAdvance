@@ -89,12 +89,13 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
         }}
       >
 
-        <strong style={{ color: "gold", fontWeight: "bold" }}>Bharat</strong>
+       
+        <strong style={{ color: "gold", fontWeight: "bold",fontSize:"20px" }}>Bharat</strong>
+
         <img src={ob} alt="ob" style={{ height: "90%", width: "70px" }} />
 
-        <strong style={{ color: "orange	", fontWeight: "bold" }}>On</strong>
-        <strong style={{ color: "white	", fontWeight: "bold" }}>li</strong>
-        <strong style={{ color: "green	", fontWeight: "bold" }}>ne</strong>
+        <strong style={{ color: "gold	", fontWeight: "bold",fontSize:"20px"  }}>Online</strong>
+      
        
       </div>
 
@@ -135,7 +136,7 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
          </ListItem>
          ) : (null)}
          <ListItem key="account" disablePadding>
-          <ListItemButton to="/account">
+          <ListItemButton to="*">
             <ListItemIcon>
               <WalletOutlined style={{ color: "white" }} />
             </ListItemIcon>
@@ -143,7 +144,7 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
           </ListItemButton>
         </ListItem>
         <ListItem key="report" disablePadding>
-          <ListItemButton to="/report">
+          <ListItemButton to="*">
             <ListItemIcon>
               <FlagOutlined style={{ color: "white" }} />
             </ListItemIcon>
@@ -151,7 +152,7 @@ const Sidebar = ({handleDrawerToggle, ...props}) => {
           </ListItemButton>
         </ListItem>
         <ListItem key="setting" disablePadding>
-          <ListItemButton to="/setting">
+          <ListItemButton to="*">
             <ListItemIcon>
               <SettingOutlined style={{ color: "white" }} />
             </ListItemIcon>
