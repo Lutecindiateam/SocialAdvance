@@ -1,6 +1,5 @@
 //===================admin=====================
 import axios from "axios";
-const BASEURL = "http://localhost:5000/api"
 
 export const editCareer = (obj) => {
   // console.log(obj);
@@ -17,7 +16,7 @@ export const editCareer = (obj) => {
 
 
 export const adminlogin = (obj) => {
-  console.log(obj);
+  // console.log(obj);
     return axios
     .post("/partner/admin/login", obj.data)
     .then((response) => {

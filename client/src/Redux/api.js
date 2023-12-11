@@ -1,5 +1,4 @@
 import axios from "axios";
-const BASEURL = "http://localhost:5000/api";
 
 //===================candidate=================
 
@@ -8,7 +7,7 @@ export const register = (obj) => {
   return (
     axios
       // .post("/candidate/register", obj.data)
-      .post(`${BASEURL}/create_partner_account`, obj.data)
+      .post("/create_partner_account", obj.data)
       .then((response) => {
         return response;
       })
