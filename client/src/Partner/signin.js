@@ -45,6 +45,7 @@ const PartnerLogin = (props) => {
 
   useEffect(() => {
     let loginData = props.candidate.loginData;
+    // console.log(loginData);
     if (loginData !== undefined) {    
       if (loginData?.data?.status == "success") {
           Swal.fire("Good job!", "Login successfully.", "success");

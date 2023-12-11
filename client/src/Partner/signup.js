@@ -77,51 +77,22 @@ const PartnerSignUp = (props) => {
         pincode,
         email,
         password,
-        role,
-        // active: "pending",
+        role
+        
       },
     });
 
-    // fetch(`${BASEURL}/create_partner_account`, {
-    //   method: "POST",
-    //   crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // body: JSON.stringify({
-
-    //   name,
-    //   phone,
-    //   address,
-    //   pincode,
-    //   email,
-    //   password,
-    //   role,
-    //   active: "pending",
-
-    // }),
-
-    // })
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   if (data.status === "Partner") {
-    //     alert("Registration Successful");
-    //     navigate("/partnerlogin")
-    //   } else {
-    //     alert(data.message);
-    // }
-
-    // });
-  };
+  
+};
   useEffect(() => {
     let registerdata = props.candidate.registerData;
     if (registerdata !== undefined) {
       if (registerdata?.data?.status === "success") {
         props.candidate.registerData = undefined;
         Swal.fire("Good job!", "Registration successfully.", "success");
-        navigate("/partnerlogin");
+   
+          navigate("/partnerlogin");
+
       } else {
         Swal.fire("Sorry!", "Email is already used.", "error");
         seterroremail("Email is already used.");

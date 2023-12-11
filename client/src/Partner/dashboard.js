@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Card, Col, Row } from "antd";
 import Layout from "./Layout";
 import "./style.css";
 import QuickLinks from "./quick";
@@ -12,6 +13,10 @@ import {
   requestGetCandidate,
 } from "../Redux/actions";
 import { connect } from "react-redux";
+import Pie from "./pie";
+import Bar from "./bar";
+import DemoBar from "./calender";
+import Graph from "./bar";
 
 const Dashboard = ({ information, ...props }) => {
   const [user, setUser] = useState({});
@@ -236,6 +241,21 @@ const Dashboard = ({ information, ...props }) => {
               </div>
             </div>
           </div>
+<br/>
+<div>
+<Row >
+              <Col sm={24} md={24} lg={20} span={24}>
+                <Card title="Total Registration Vs Active Registration" >
+                  <Pie />
+                  
+                </Card>
+              </Col>
+             </Row>
+             </div>
+             {/* <div>
+              <Graph/>
+             </div> */}
+          
         </div>
       </Fragment>
     </Layout>

@@ -40,6 +40,7 @@ import Report from "./Partner/report";
 import Setting from "./Partner/setting";
 import Header from "./Partner/Header";
 import Logout from "./Partner/Logout";
+import Pie from "./Partner/pie";
 
 
 const router = createBrowserRouter([
@@ -188,7 +189,12 @@ const router = createBrowserRouter([
 {
     path:"/logout",
     element:<Logout />
-  }
+  },
+  // {
+  //   path:"/pie",
+  //   element:<Pie />
+  // },
+
 ]);
 
 export default router;
