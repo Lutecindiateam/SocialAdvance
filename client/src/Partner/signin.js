@@ -24,33 +24,34 @@ const PartnerLogin = (props) => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     setEmail("");
     setPassword("");
   }, []);
 
+  useEffect(() => {
+    props.userLogout();
+  }, []);
+  
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    
+
     props.requestLogin({
       data: {
         email: email,
         password: password,
       },
     });
-   
   }
 
   useEffect(() => {
     let loginData = props.candidate.loginData;
-    if (loginData !== undefined) {    
+    if (loginData !== undefined) {
       if (loginData?.data?.status == "success") {
-          Swal.fire("Good job!", "Login successfully.", "success");
-           navigate("/dashboard");
+        Swal.fire("Good job!", "Login successfully.", "success");
+        navigate("/dashboard");
       } else {
-        Swal.fire("Sorry!", loginData.data.error , "error");
+        Swal.fire("Sorry!", loginData.data.error, "error");
         seterrorpassword("Invalid Credentials");
         setError(true);
       }

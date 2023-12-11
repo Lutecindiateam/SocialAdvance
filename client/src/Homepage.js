@@ -1,18 +1,204 @@
-import React, { useEffect } from "react";
-import frontpage from "./image/frontpage.jpg";
+// import React, { useEffect } from "react";
+// import frontpage from "./image/frontpage.jpg";
+// import "./Homepage.css";
+// import ganeshji1 from "./image/ganeshji1.jpg";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { userLogout } from "./Redux/actions";
+
+// function App(props) {
+//   useEffect(() => {
+//     props.userLogout();
+//   }, []);
+
+//   return (
+//     <>
+//       <div className="container">
+//         <nav
+//           style={{
+//             position: "absolute",
+//             top: 0,
+//             right: "20px",
+//             padding: "10px",
+//             zIndex: 1,
+//           }}
+//         >
+//           <ul
+//             style={{
+//               listStyleType: "none",
+//               paddingInlineStart: "0",
+//               display: "flex",
+//               alignItems: "center",
+//             }}
+//           >
+//             <li
+//               style={{
+//                 display: "flex",
+//                 alignItems: "center",
+//                 marginRight: "10px",
+//               }}
+//             >
+//               <span
+//                 style={{
+//                   width: "10px",
+//                   height: "10px",
+//                   borderRadius: "50%",
+//                   backgroundColor: "white",
+//                   marginRight: "4px",
+//                 }}
+//               ></span>
+//               <a
+//                 href="/adminlogin"
+//                 style={{
+//                   color: "white",
+//                   fontSize: "20px",
+//                   textDecoration: "underline",
+//                   padding: "5px",
+//                 }}
+//               >
+//                 Association/Mandal
+//               </a>
+//             </li>
+//             <li style={{ display: "flex", alignItems: "center" }}>
+//               <span
+//                 style={{
+//                   width: "10px",
+//                   height: "10px",
+//                   borderRadius: "50%",
+//                   backgroundColor: "white",
+//                   marginRight: "4px",
+//                 }}
+//               ></span>
+//               <a
+//                 href="/userlogin"
+//                 style={{
+//                   color: "white",
+//                   fontSize: "20px",
+//                   textDecoration: "underline",
+//                   padding: "5px",
+//                 }}
+//               >
+//                 Member
+//               </a>
+//             </li>
+//           </ul>
+//           <ul
+//             style={{
+//               listStyleType: "none",
+//               paddingInlineStart: "0",
+//               display: "flex",
+//               alignItems: "center",
+//             }}
+//           >
+//             <li
+//               style={{
+//                 display: "flex",
+//                 alignItems: "center",
+//                 marginRight: "10px",
+//               }}
+//             >
+//               <span
+//                 style={{
+//                   width: "10px",
+//                   height: "10px",
+//                   borderRadius: "50%",
+//                   backgroundColor: "white",
+//                   marginRight: "4px",
+//                 }}
+//               ></span>
+//               <a
+//                 href="/cricket"
+//                 style={{
+//                   color: "white",
+//                   fontSize: "20px",
+//                   textDecoration: "underline",
+//                   padding: "5px",
+//                 }}
+//               >
+//                 Cricket
+//               </a>
+//             </li>
+//           </ul>
+//           <ul
+//             style={{
+//               listStyleType: "none",
+//               paddingInlineStart: "0",
+//               display: "flex",
+//               alignItems: "center",
+//             }}
+//           >
+//             <li
+//               style={{
+//                 display: "flex",
+//                 alignItems: "center",
+//                 marginRight: "10px",
+//               }}
+//             >
+//               <span
+//                 style={{
+//                   width: "10px",
+//                   height: "10px",
+//                   borderRadius: "50%",
+//                   backgroundColor: "white",
+//                   marginRight: "4px",
+//                 }}
+//               ></span>
+//               <a
+//                 href="/partnerlogin"
+//                 style={{
+//                   color: "white",
+//                   fontSize: "20px",
+//                   textDecoration: "underline",
+//                   padding: "5px",
+//                 }}
+//               >
+//                 Partner
+//               </a>
+//             </li>
+//           </ul>
+//         </nav>
+//       </div>
+//     </>
+//   );
+// }
+
+// const mapStateToProps = (state) => {
+//   return { candidate: state.candidate };
+// };
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators({ userLogout }, dispatch);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
-import ganeshji1 from "./image/ganeshji1.jpg";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {userLogout } from "./Redux/actions";
-
+import { userLogout } from "./Redux/actions";
+// import * as React from 'react';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 function App(props) {
-  
+  const [selectedOption, setSelectedOption] = useState("");
+  const navigate = useNavigate();
+
+  const handleOptionChange = (event) => {
+    const selectedRoute = event.target.value;
+    setSelectedOption(selectedRoute);
+
+    if (selectedRoute) {
+      navigate(selectedRoute); // Navigate to the selected route
+    }
+  };
+
   useEffect(() => {
     props.userLogout();
-  },[]);
-  
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -25,284 +211,53 @@ function App(props) {
             zIndex: 1,
           }}
         >
-          <ul
-            style={{
-              listStyleType: "none",
-              paddingInlineStart: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-              }}
+          {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Age</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={selectedOption}
+              label="Age"
+              onChange={handleOptionChange}
             >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/adminlogin"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Association/Mandal
-              </a>
-            </li>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/userlogin"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Member
-              </a>
-            </li>
-          </ul>
-          <ul
-            style={{
-              listStyleType: "none",
-              paddingInlineStart: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/train"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Travel
-              </a>
-            </li>
-          </ul>
-          <ul
-            style={{
-              listStyleType: "none",
-              paddingInlineStart: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/weather"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Weather
-              </a>
-            </li>
-          </ul>
-          <ul
-            style={{
-              listStyleType: "none",
-              paddingInlineStart: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/cricket"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Cricket
-              </a>
-            </li>
-          </ul>
-          <ul
-            style={{
-              listStyleType: "none",
-              paddingInlineStart: "0",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  marginRight: "4px",
-                }}
-              ></span>
-              <a
-                href="/partnerlogin"
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  textDecoration: "underline",
-                  padding: "5px",
-                }}
-              >
-                Partner
-              </a>
-            </li>
-          </ul>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="/adminlogin">Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl> */}
+          <select value={selectedOption} onChange={handleOptionChange}>
+            <option value="" disabled>Social</option>
+            {/* <optgroup label="Login"> */}
+              <option value="/adminlogin">E-receipt Association</option>
+              <option value="/userlogin">E-receipt Member</option>
+              <option value="/cricket">Sport</option>
+              <option value="/weather">Weather</option>
+
+            {/* </optgroup> */}
+           
+          </select>
+          <select value={selectedOption} onChange={handleOptionChange}>
+            <option value="" disabled>Sales Portal</option>
+            {/* <optgroup label="Activities"> */}
+            <option value="/partnerlogin">Partner</option>
+            <option value="/partner/admin">Admin</option>
+
+            {/* </optgroup> */}
+          </select>
         </nav>
       </div>
     </>
   );
 }
-// export default App;
+
 const mapStateToProps = (state) => {
   return { candidate: state.candidate };
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({  userLogout }, dispatch);
+  bindActionCreators({ userLogout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-// import React from "react";
-// import frontpage from './image/web-image.png'
-// import './Homepage.css'
-
-// function App() {
-//   localStorage.clear();
-
-//   return (
-//     <>
-//       <div>
-//         <img
-//           src={frontpage}
-//           alt="Background"
-//           className="background-image"
-//           useMap="#image-map" // Add the useMap attribute with the map name
-//           style={{marginLeft : "170px",  height: "100vh"}}
-//         />
-
-//         {/* Define the image map */}
-//         <map name="image-map">
-//           <area
-//             shape="rect"
-//             coords="26,459,230,379"
-//             href="https://play.google.com/store/apps/dev?id=5163502344443105013"
-//             alt="Clickable Area"
-//           />
-//           <area
-//             shape="rect"
-//             coords="469,463,262,377"
-//             href="https://play.google.com/store/apps/dev?id=5163502344443105013"
-//             alt="Clickable Area"
-//           />
-//           {/* You can add more <area> elements for additional clickable areas */}
-//         </map>
-
-//         <nav
-//           style={{
-//             position: "absolute",
-//             top: 0,
-//             right: "200px",
-//             padding: "10px",
-//             fontFamily: "Italic",
-//             zIndex: 1,
-//           }}
-//         >
-//           <a href="/adminlogin" style={{ color: "white", fontSize: "20px" }}>
-//             Admin
-//           </a>
-//           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-//           <a href="/userlogin" style={{ color: "white", fontSize: "20px" }}>
-//             User
-//           </a>
-//         </nav>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default App;

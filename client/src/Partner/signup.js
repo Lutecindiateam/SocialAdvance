@@ -77,43 +77,9 @@ const PartnerSignUp = (props) => {
         pincode,
         email,
         password,
-        role,
-        // active: "pending",
+        role
       },
     });
-
-    // fetch(`${BASEURL}/create_partner_account`, {
-    //   method: "POST",
-    //   crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // body: JSON.stringify({
-
-    //   name,
-    //   phone,
-    //   address,
-    //   pincode,
-    //   email,
-    //   password,
-    //   role,
-    //   active: "pending",
-
-    // }),
-
-    // })
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   if (data.status === "Partner") {
-    //     alert("Registration Successful");
-    //     navigate("/partnerlogin")
-    //   } else {
-    //     alert(data.message);
-    // }
-
-    // });
   };
   useEffect(() => {
     let registerdata = props.candidate.registerData;

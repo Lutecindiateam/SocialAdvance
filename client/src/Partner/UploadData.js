@@ -19,7 +19,7 @@ import {
   requestAddResume,
   requestApplyJob,
   requestAdminGetProfile,
-  requestJobDetails
+  requestJobDetails,
 } from "../Redux/actions";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -107,7 +107,8 @@ const UploadData = (props) => {
         setLoader(true);
       } catch (error) {
         console.error(error);
-        alert("Error uploading CSV file.");
+        alert("Error uploading CSV file. Please Check Format");
+        setLoader(false);
       }
     } else {
       Swal.fire("Error!", "Please select a CSV file.", "error");
@@ -119,7 +120,7 @@ const UploadData = (props) => {
     if (loginData !== undefined) {
       if (loginData?.data?.status === "success") {
         setUser(loginData.data.data);
-      } 
+      }
     }
   }, [props.candidate.loginData]);
 
@@ -133,7 +134,6 @@ const UploadData = (props) => {
       }
     }
   }, [props.data.loginData]);
-
 
   // useEffect(() => {
   //   if (user.role === "admin") {
@@ -161,13 +161,12 @@ const UploadData = (props) => {
           "There is some error in uploading CSV file.",
           "error"
         );
+        setLoader(false)
         props.candidate.addResumeData = undefined;
         props.candidate.resumeData = undefined;
       }
     }
   }, [props.candidate.addResumeData]);
-
- 
 
   const onFinish = async (values) => {
     try {
@@ -542,7 +541,7 @@ const UploadData = (props) => {
                     shape="round"
                     loading={loader}
                     onClick={onClickLoading}
-                   style={{backgroundColor:"#2c3e50"}} 
+                    style={{ backgroundColor: "#2c3e50" }}
                   >
                     Add Data
                   </Button>
@@ -575,14 +574,18 @@ const UploadData = (props) => {
                   >
                     Download CSV Template
                   </Button> */}
-                  <a
-                    href="#"
-                    className="ant-btn ant-btn-primary ant-btn-round mt-2"
-                    onClick={downloadTemplate}
-                  >
-                    Download CSV Template
-                  </a>
-                  <br />
+                  <h6>
+                    <a
+                      href="#"
+                      className="ant-btn ant-btn-primary ant-btn-round mt-2"
+                      onClick={downloadTemplate}
+                    >
+                      Download
+                    </a>
+                    &nbsp; the excel template here that needs to be uploaded .
+                  </h6>
+
+                  {/* <br /> */}
                   <Button
                     className="mt-2"
                     type="primary"
@@ -590,7 +593,7 @@ const UploadData = (props) => {
                     shape="round"
                     loading={loader}
                     onClick={handleUpload}
-                    style={{backgroundColor:"#2c3e50"}} 
+                    style={{ backgroundColor: "#2c3e50" }}
                   >
                     Import From CSV
                   </Button>
@@ -614,7 +617,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { requestAddResume, requestApplyJob, requestAdminGetProfile,requestJobDetails },
+    {
+      requestAddResume,
+      requestApplyJob,
+      requestAdminGetProfile,
+      requestJobDetails,
+    },
     dispatch
   );
 
