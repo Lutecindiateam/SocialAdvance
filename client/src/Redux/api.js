@@ -116,16 +116,7 @@ export const jobDetails = (obj) => {
     });
 };
 
-
-
-
-
 //*********END********/
-
-
-
-
-
 
 export const googlelogin = (obj) => {
   return axios
@@ -352,8 +343,6 @@ export const getJobsCategoryWise = (obj) => {
       return err.response;
     });
 };
-
-
 
 // export const addComment = (obj) => {
 //   return axios

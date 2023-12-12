@@ -6,14 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import router from "./App";
 import { Provider } from "react-redux";
-import { store ,persistor, sagaMiddleware} from "./Redux/store";
+import { store, persistor, sagaMiddleware } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import mainSaga from "./Redux/sagas";
 import axios from "axios";
 
 sagaMiddleware.run(mainSaga);
 
-axios.defaults.baseURL = `${process.env.REACT_APP_API_HOST}`
+axios.defaults.baseURL = `${process.env.REACT_APP_API_HOST}`;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

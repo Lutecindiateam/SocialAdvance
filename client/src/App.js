@@ -25,9 +25,9 @@ import Sidebar from "./Partner/Sidebar";
 import PartnerLogin from "./Partner/signin";
 // import Main from "./Partner/Main"
 
-import PartnerSignUp from "./Partner/signup"
-import PartnerForget from "./Partner/forget"
-import ColumnSelectorGrid from './Partner/Admin/adminaction';
+import PartnerSignUp from "./Partner/signup";
+import PartnerForget from "./Partner/forget";
+import ColumnSelectorGrid from "./Partner/Admin/adminaction";
 import TableData from "./Partner/table";
 import Adminaction from "./Partner/Admin/adminaction";
 import PartnerAdminLogin from "./Partner/Admin/Login";
@@ -41,7 +41,6 @@ import Setting from "./Partner/setting";
 import Header from "./Partner/Header";
 import Logout from "./Partner/Logout";
 import Pie from "./Partner/pie";
-
 
 const router = createBrowserRouter([
   {
@@ -73,71 +72,66 @@ const router = createBrowserRouter([
     element: <UserSignUp />,
   },
 
-
-    {
-      path: "/poster/:id",
-      element: < Poster />,
-    },
-    {
-      path: "/form/admin/:id",
-      element: < FormExampleAdmin />,
-    },
-    {
-      path: "/csv/:id",
-      element: < Sheet />,
-    },
-    {
-      path: "/Admin/forget",
-      element: < Forget />,
-    },
-    {
-      path: "/User/forget",
-      element: < UserForget />,
-    },
-    {
-      path: "/profile",
-      element: <AssoProfile />,
-    },
-    {
-      path: "/train",
-      element: <Information />
-    },
-    {
-      path: "/weather",
-      element: <Weather />
-    },
-    {
-      path: "/cricket",
-      element: <Cricket />
-    },
-    {
-      path: "/main",
-      element: <Sidebar />
-    },
-    {
-      path: "/upload",
-      element: <UploadData />
-    },
-    {
-      path: "/partnerlogin",
-      element: <PartnerLogin />
-    },
-    {
-      path: "/partnersignup",
-      element: <PartnerSignUp />
-    },
-    {
-      path: "/partnerforget",
-      element: <PartnerForget />
-    },
-    // {
-    //   path: "/table",
-    //   element: <Chirkut />
-    // },
-    {
-      path: "/adminaction",
-      element: <ColumnSelectorGrid />
-    },
+  {
+    path: "/poster/:id",
+    element: <Poster />,
+  },
+  {
+    path: "/form/admin/:id",
+    element: <FormExampleAdmin />,
+  },
+  {
+    path: "/csv/:id",
+    element: <Sheet />,
+  },
+  {
+    path: "/Admin/forget",
+    element: <Forget />,
+  },
+  {
+    path: "/User/forget",
+    element: <UserForget />,
+  },
+  {
+    path: "/profile",
+    element: <AssoProfile />,
+  },
+  {
+    path: "/train",
+    element: <Information />,
+  },
+  {
+    path: "/weather",
+    element: <Weather />,
+  },
+  {
+    path: "/cricket",
+    element: <Cricket />,
+  },
+  {
+    path: "/main",
+    element: <Sidebar />,
+  },
+  {
+    path: "/upload",
+    element: <UploadData />,
+  },
+  {
+    path: "/partnerlogin",
+    element: <PartnerLogin />,
+  },
+  {
+    path: "/partnersignup",
+    element: <PartnerSignUp />,
+  },
+  {
+    path: "/partnerforget",
+    element: <PartnerForget />,
+  },
+  {
+    path: "/adminaction",
+    element: <ColumnSelectorGrid />,
+  },
   {
     path: "/all-data",
     element: <TableData />,
@@ -150,10 +144,6 @@ const router = createBrowserRouter([
     path: "/account",
     element: <Account />,
   },
-
-  
-
-  //Admin Routes
   {
     path: "/partner/admin",
     element: <PartnerAdminLogin />,
@@ -163,38 +153,37 @@ const router = createBrowserRouter([
     element: <Adminaction />,
   },
   {
-    path:"/demobar",
-    element:<DemoBar/>
+    path: "/demobar",
+    element: <DemoBar />,
   },
   {
-    path:"/dashboard",
-    element:<Dashboard/>
+    path: "/dashboard",
+    element: <Dashboard />,
   },
   {
-    path:"/quick",
-    element:<QuickLinks />
+    path: "/quick",
+    element: <QuickLinks />,
   },
   {
-    path:"/report",
-    element:<Report />
+    path: "/report",
+    element: <Report />,
   },
   {
-    path:"/setting",
-    element:<Setting />
+    path: "/setting",
+    element: <Setting />,
   },
   {
-    path:"/header",
-    element:<Header />
+    path: "/header",
+    element: <Header />,
   },
-{
-    path:"/logout",
-    element:<Logout />
+  {
+    path: "/logout",
+    element: <Logout />,
   },
   // {
   //   path:"/pie",
   //   element:<Pie />
   // },
-
 ]);
 
 export default router;

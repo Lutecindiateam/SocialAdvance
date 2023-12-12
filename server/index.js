@@ -1,22 +1,25 @@
-
-const express = require("express")
-const env= require('dotenv');
+const express = require("express");
+const env = require("dotenv");
 const app = express();
-const mongoose =require('mongoose');
-app.use(express.json())
-// const helmet = require('helmet');
-var cors = require('cors')
-app.use(cors())
-// app.use(helmet());
- env.config();
+const mongoose = require("mongoose");
+app.use(express.json());
 
+//for developement
+// var cors = require('cors')
+// app.use(cors())
 
-const authRoutes =require("./src/routes/user");
+//for production
+const helmet = require("helmet");
+app.use(helmet());
 
-const MONGO_URL =process.env.MONGO_URL 
+env.config();
 
+const authRoutes = require("./src/routes/user");
 
-mongoose.connect(MONGO_URL)
+const MONGO_URL = process.env.MONGO_URL;
+
+mongoose
+  .connect(MONGO_URL)
   .then(() => {
     console.log("Database connected");
   })
@@ -24,12 +27,12 @@ mongoose.connect(MONGO_URL)
     console.log("error ::", error.message);
   });
 
-  app.use('/api', authRoutes);
+app.use("/api", authRoutes);
 
-app.get('/', (req, res) => {
-    res.send("welcome")
-})
+app.get("/", (req, res) => {
+  res.send("welcome");
+});
 
-app.listen(process.env.PORT, ()=>{
-  console.log(`server is ready for port ${process.env.PORT}`)
-})
+app.listen(process.env.PORT, () => {
+  console.log(`server is ready for port ${process.env.PORT}`);
+});

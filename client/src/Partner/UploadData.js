@@ -161,7 +161,7 @@ const UploadData = (props) => {
           "There is some error in uploading CSV file.",
           "error"
         );
-        setLoader(false)
+        setLoader(false);
         props.candidate.addResumeData = undefined;
         props.candidate.resumeData = undefined;
       }
