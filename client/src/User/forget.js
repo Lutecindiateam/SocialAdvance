@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useMemo, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 const UserForget = () => {
     const navigate = useNavigate();
@@ -153,7 +153,7 @@ const UserForget = () => {
                                                 name="password"
                                                 value={data.password}
                                                 onChange={onChangeData}
-                                            onBlur={validatePass}
+                                                onBlur={validatePass}
                                             />
                                             {errorPass && <div style={mystyle}>{errorPass}</div>}
                                         </div>
@@ -170,7 +170,7 @@ const UserForget = () => {
                                                 name="password_confirmation"
                                                 value={data.password_confirmation}
                                                 onChange={onChangeData}
-                                            onBlur={validateCPass}
+                                                onBlur={validateCPass}
                                             />
                                             {errorCPass && <div style={mystyle}>{errorCPass}</div>}
                                         </div>

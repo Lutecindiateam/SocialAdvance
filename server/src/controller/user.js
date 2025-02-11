@@ -6,7 +6,7 @@ const admin = require('../models/admin');
 
 
 exports.create_user_account = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   try {
     const user = await User.findOne({ code: req.body.code, email: req.body.email }).exec();
     if (user) return res.status(400).json({

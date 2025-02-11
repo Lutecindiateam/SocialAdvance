@@ -34,7 +34,7 @@ exports.adminupdate = async (req, res) => {
       },
       { new: true }
     );
-    console.log(update);
+
     if (update) {
       return res.status(201).json({
         message: "request find successfully",
@@ -91,7 +91,7 @@ exports.admin_action = async (req, res) => {
 // }
 
 exports.create_partner_account = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   try {
     const existingEmailPartner = await Partner.findOne({
       email: req.body.email,
@@ -149,7 +149,7 @@ exports.create_partner_account = async (req, res) => {
 };
 
 exports.authenticate_partner = async (req, res) => {
-  // console.log(req.body)
+  console.log(req.body)
   try {
     const { email, password } = req.body;
     // Check if user exists

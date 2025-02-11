@@ -6,12 +6,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import './signup.css'
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 const AdminSignUp = () => {
 
@@ -66,218 +66,218 @@ const AdminSignUp = () => {
 
   return (
     <div className="background">
-    <Container component="main" maxWidth="xs" >
-      <div>
-        {/* <Typography variant="h5">Registration</Typography> */}
-        <form onSubmit={handleSubmit}>
-          <TextField
-            fullWidth
-            label="Association Name/Mandal Name"
-            type="text"
-            required
-            placeholder="Name"
-            onChange={(e) => setMandalName(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+      <Container component="main" maxWidth="xs" >
+        <div>
+          {/* <Typography variant="h5">Registration</Typography> */}
+          <form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              label="Organization Name"
+              type="text"
+              required
+              placeholder=" Organization Name"
+              onChange={(e) => setMandalName(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Registration Number"
-            type="text"
-            placeholder="Registration Number"
-            onChange={(e) => setRegistration(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Registration Number"
+              type="text"
+              placeholder="Registration Number"
+              onChange={(e) => setRegistration(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Admin Full Name"
-            type="text"
-            required
-            placeholder="Name"
-            onChange={(e) => setName(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Admin Full Name"
+              type="text"
+              required
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Admin Phone Number"
-            type="text"
-            required
-            placeholder="Phone"
-            onChange={(e) => setPhone(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Admin Phone Number"
+              type="text"
+              required
+              placeholder="Phone"
+              onChange={(e) => setPhone(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Association/Mandal Address"
-            type="text"
-            required
-            placeholder="Address"
-            onChange={(e) => setAddress(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Organization Address"
+              type="text"
+              required
+              placeholder="Address"
+              onChange={(e) => setAddress(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Pin Code"
-            type="text"
-            required
-            placeholder="Pin Code"
-            onChange={(e) => setPincode(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Pin Code"
+              type="text"
+              required
+              placeholder="Pin Code"
+              onChange={(e) => setPincode(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Admin Email address"
-            type="email"
-            required
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Admin Email address"
+              type="email"
+              required
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            
-            label="Password"
-            type="password"
-            required
-            placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
 
-          <TextField
-            fullWidth
-            label="Generate Association/Mandal Code"
-            type="text"
-            required
-            placeholder="For Example 123456"
-            onChange={(e) => setCode(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+              label="Password"
+              type="password"
+              required
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Sign Up
-          </Button>
+            <TextField
+              fullWidth
+              label="Organization Code"
+              type="text"
+              required
+              placeholder="For Example 123456"
+              onChange={(e) => setCode(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <Typography align="right" style={{ color: "white", fontSize: "16px" }}>
-            Already have an account? <a href="/adminlogin" style={{ color: "white"}}>Log In</a>
-          </Typography>
-        </form>
-      </div>
-    </Container>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Sign Up
+            </Button>
+
+            <Typography align="right" style={{ color: "white", fontSize: "16px" }}>
+              Already have an account? <a href="/adminlogin" style={{ color: "white" }}>Log In</a>
+            </Typography>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 };

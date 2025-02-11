@@ -4,11 +4,11 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
  
  //for developement
-const BASEURL = "http://localhost:5000/api"
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 function AssoProfile() {
   const navigate = useNavigate();

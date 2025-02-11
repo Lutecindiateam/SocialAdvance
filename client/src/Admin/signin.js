@@ -8,11 +8,11 @@ import TextField from "@mui/material/TextField";
 import './Admin.css'
 
  //for developement
-const BASEURL = "http://localhost:5000/api"
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");

@@ -4,13 +4,13 @@ const app = express();
 const mongoose = require("mongoose");
 app.use(express.json());
 
-//for developement
-// var cors = require('cors')
-// app.use(cors())
+// for developement
+var cors = require('cors')
+app.use(cors())
 
 //for production
-const helmet = require("helmet");
-app.use(helmet());
+// const helmet = require("helmet");
+// app.use(helmet());
 
 env.config();
 
@@ -33,6 +33,6 @@ app.get("/", (req, res) => {
   res.send("welcome");
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`server is ready for port ${process.env.PORT}`);
 });

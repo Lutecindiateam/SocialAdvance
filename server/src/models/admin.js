@@ -22,11 +22,11 @@ const applySchema = new mongoose.Schema(
 
         registration: {
 
-            type: Number,
+            type: String,
             trim: true
         },
         phone: {
-            type: Number,
+            type: String,
             trim: true
         },
         address: {
@@ -38,7 +38,7 @@ const applySchema = new mongoose.Schema(
         },
         pincode: {
 
-            type: Number,
+            type: String,
 
             required: true,
             trim: true

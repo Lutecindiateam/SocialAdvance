@@ -231,33 +231,33 @@ function App(props) {
           <select
             value={selectedOption}
             onChange={handleOptionChange}
-            style={{ backgroundColor: "white", borderRadius:"10px" }}
+            style={{ backgroundColor: "white", borderRadius: "10px" }}
           >
             <option value="" disabled>
               Social
             </option>
             <optgroup label="E-receipt ">
-            <option value="/adminlogin">Association</option>
-            <option value="/userlogin">Member</option>
+              <option value="/adminlogin">Organization</option>
+              <option value="/userlogin">Member</option>
             </optgroup>
-            <option value="/cricket">Sport</option>
-            <option value="/weather">Weather</option>          
+            {/* <option value="/cricket">Sport</option>
+            <option value="/weather">Weather</option>           */}
           </select>
           &nbsp; &nbsp;
-          <select
+          {/* <select
             value={selectedOption}
             onChange={handleOptionChange}
-            style={{ backgroundColor: "white", borderRadius:"10px" }}
+            style={{ backgroundColor: "white", borderRadius: "10px" }}
           >
             <option value="" disabled>
               Sales Portal
             </option>
-            {/* <optgroup label="Activities"> */}
+           
             <option value="/partnerlogin">Partner</option>
             <option value="/partner/admin">Admin</option>
 
-            {/* </optgroup> */}
-          </select>
+            
+          </select> */}
         </nav>
       </div>
     </>

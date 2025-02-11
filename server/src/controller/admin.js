@@ -111,6 +111,8 @@ exports.create_admin_account = async (req, res) => {
     // console.log(res);
 
   } catch (error) {
+    console.log(error.message);
+    
     return res.status(400).json({
       message: error
     });

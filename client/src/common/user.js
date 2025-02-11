@@ -13,16 +13,18 @@ import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
 // import { ExportToExcel } from "../Admin/csv";
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 
 function CustomTable({ data }) {
+
   const [columnItems, setColumnItems] = useState([]);
+
   const [columnsToShow, setColumnsToShow] = useState([]);
 
 
@@ -85,6 +87,7 @@ function CustomTable({ data }) {
       dataIndex: "receipt",
       key: "receipt",
       render: (text, record) => (
+
         <Link to={`/poster/${record._id}`}>
           <Button variant="contained">View Receipt</Button>
         </Link>
@@ -203,7 +206,7 @@ const FormExample = () => {
       [e.target.name]: e.target.value,
     }))
   }
- 
+
   const getallusers = async () => {
     const get = axios.get(`${BASEURL}/getallusers/${params.id}`)
       .then((res) => {
@@ -282,11 +285,11 @@ const FormExample = () => {
             <Link to="/">
               <Button variant="contained">Log Out</Button>
             </Link>
-            <Typography variant="h6" align="center">
+            {/* <Typography variant="h6" align="center">
 
               <b>|| श्री गणेशाय नमः ||</b>
 
-            </Typography>
+            </Typography> */}
 
             <br />
 
@@ -316,13 +319,13 @@ const FormExample = () => {
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
             <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
-<div style={{textAlign: "center"}}>
-<h4>Make Receipt</h4>
-</div>
-<br/>
+              <div style={{ textAlign: "center" }}>
+                <h4>Make Receipt</h4>
+              </div>
+              <br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="नाव"><b>नाव:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Name"><b>Name:</b></label> &nbsp;&nbsp;
 
                 <TextField
 
@@ -346,7 +349,7 @@ const FormExample = () => {
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="पत्ता"><b>पत्ता:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Address"><b>Address:</b></label> &nbsp;&nbsp;
 
                 <TextField
 
@@ -371,7 +374,7 @@ const FormExample = () => {
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="नंबर"><b>नंबर:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Mobile"><b>Mobile No:</b></label> &nbsp;&nbsp;
 
                 <TextField
 
@@ -397,7 +400,7 @@ const FormExample = () => {
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="रक्कम"><b>रक्कम:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Amount"><b>Amount:</b></label> &nbsp;&nbsp;
 
                 <TextField
 

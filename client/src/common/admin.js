@@ -11,12 +11,12 @@ import Button from '@mui/material/Button'
 import Drawer from "./drawer";
 import { RWebShare } from "react-web-share";
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 function CustomTable({ data }) {
   const [columnItems, setColumnItems] = useState([]);
@@ -190,7 +190,7 @@ const FormExampleAdmin = () => {
     getallusers();
 
   }, []);
-  
+
 
   useEffect(() => {
     const savedInfo = localStorage.getItem("info");
@@ -277,10 +277,10 @@ const FormExampleAdmin = () => {
         <div className="card-body" style={{ backgroundImage: 'url()' }}>
           <div className="front" style={{ backgroundColor: '#FA7D09' }}>
             <Drawer />
-            <Typography variant="h6" align="center">
+            {/* <Typography variant="h6" align="center">
               <b>|| श्री गणेशाय नमः ||</b>
-            </Typography>
-            <br />
+            </Typography> */}
+            {/* <br /> */}
             <Typography variant="h2" align="center">
               <b>{value.id}</b>
             </Typography>
@@ -294,12 +294,12 @@ const FormExampleAdmin = () => {
           <br /><br />
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '40px', borderColor: "Green" }}>
-            <div style={{textAlign: "center"}}>
-<h4>Make Receipt</h4>
-</div>
-<br/>
+              <div style={{ textAlign: "center" }}>
+                <h4>Make Receipt</h4>
+              </div>
+              <br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="नाव"><b>नाव:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Name"><b>Name:</b></label> &nbsp;&nbsp;
                 <TextField
                   label="name"
                   name="name"
@@ -311,7 +311,7 @@ const FormExampleAdmin = () => {
 
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="पत्ता"><b>पत्ता:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Address"><b>Address:</b></label> &nbsp;&nbsp;
                 <TextField
                   type="text"
                   label="address"
@@ -325,7 +325,7 @@ const FormExampleAdmin = () => {
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <label htmlFor="नंबर"><b>नंबर:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Mobile No."><b>Mobile No.</b></label> &nbsp;&nbsp;
 
                 <TextField
                   type="text"
@@ -340,7 +340,7 @@ const FormExampleAdmin = () => {
               </div>
               <br /><br />
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="रक्कम"><b>रक्कम:</b></label> &nbsp;&nbsp;
+                <label htmlFor="Amount"><b>Amount:</b></label> &nbsp;&nbsp;
                 <TextField
                   label="amount"
                   name='amount'
@@ -359,7 +359,7 @@ const FormExampleAdmin = () => {
               </div>
               {/* <div style={{ display: 'flex' }}>
                 <Button variant="contained" type="submit">Save</Button> */}
-                {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <Button variant="contained" onClick={() => navigate("/userlist")} aria-label="User Management">User Management</Button> */}
               {/* </div> */}
             </form>

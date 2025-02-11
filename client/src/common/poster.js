@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import ganeshji1 from '../image/ganeshji1.jpg';
+import logo from '../image/aiimslogo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, TextField, Grid, Paper, Button } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
@@ -8,12 +8,12 @@ import footer4 from '../image/footer4.jpg'
 import { useNavigate } from "react-router-dom";
 import './poster.css'
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,36 +32,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Poster = (props) => {       
+const Poster = (props) => {
   const param = useParams()
-  // console.log(param);
-  
+  console.log(param);
+
   const classes = useStyles();
   const componentsPDF = useRef();
   const [data, setData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-const [value, setValue] = useState({});
-const navigate = useNavigate();
-// console.log(user);
+  const [value, setValue] = useState({});
+  console.log(value);
+
+  const navigate = useNavigate();
+  // console.log(user);
   const handlePrint = () => {
     setIsButtonDisabled(true);
 
     window.print();
   };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.print();
-    }, 1000);
-  
-    // Clear the timer if the component unmounts before the 2-second delay
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     window.print();
+  //   }, 1000);
+
+  //   // Clear the timer if the component unmounts before the 2-second delay
+  //   return () => clearTimeout(timer);
+  // }, []);
   useEffect(() => {
     const getsingleusers = async () => {
       const get = axios.get(`${BASEURL}/getsingleusers/${param.id}`)
         .then((res) => {
-           
-// console.log(res);
+
+          // console.log(res);
           setData(res.data.data);
         })
         .catch((err) => {
@@ -87,37 +89,38 @@ const navigate = useNavigate();
 
   return (
     <>
-     <div className='wrapper' style={{ display: "flex" }}>
-        <div>
-          <img src={ganeshji1} alt="ganeshji1" style={{ height: "100%", width: "150px" }} />
-        </div>
-        <Paper className={classes.content}  >
-          <Typography variant="h6" align="center">
-            <b style={{ color: "green" }}>||श्री गणेशाय नमः||</b>
-          </Typography>
-          
-          <br />
-          <Typography  variant="h3" align="center"  style={{fontSize: "h6"}}>
-            <b style={{ color: "#FA7D09" }}>{value.id}</b>
-          </Typography>
-          <Typography variant="h6" align="center">
-            <b style={{ color: "#862B0D" }}>{value.address}</b>
-          </Typography>
+      <div className='wrapper' style={{ display: "flex" }}>
 
-          
-           <hr />
-        <Grid container spacing={2}>
+        <Paper className={classes.content}  >
+
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={logo} alt="ganeshji1" style={{ height: "220px", width: "120px" }} />
+
+            <div style={{ marginLeft: "20px", alignItems: "center" }}>
+              <Typography variant="h3" align="center" style={{ fontSize: "h6" }}>
+                <b style={{ color: "#FA7D09" }}>{value.id}</b>
+              </Typography>
+              <Typography variant="h6" align="center">
+                <b style={{ color: "#862B0D" }}>{value.address}</b>
+              </Typography>
+            </div>
+          </div>
+
+          <hr />
+          <Grid container spacing={2}>
             <Grid item xs={12}>
-            <TextField
-              label="पावती क्र:"
-              variant="standard"
-              size="small"
-              fullWidth
-            />
-          </Grid> 
-          <Grid item xs={12}>
               <TextField
-                label="दिनांक:"
+                label="Receipt id"
+                variant="standard"
+                size="small"
+                fullWidth
+                // value={param.id}
+                value={param.id.slice(-3)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Date:"
                 variant="standard"
                 size="small"
                 fullWidth
@@ -129,7 +132,7 @@ const navigate = useNavigate();
 
             <Grid item xs={12}>
               <TextField
-                label="श्री. / श्रीमती"
+                label="Mr./Mrs."
                 variant="standard"
                 size="small"
                 fullWidth
@@ -140,7 +143,7 @@ const navigate = useNavigate();
             </Grid>
             <Grid item xs={12}>
               <TextField
-                label="यांच्‍याकडून"
+                label="From"
                 variant="standard"
                 size="small"
                 fullWidth
@@ -149,7 +152,7 @@ const navigate = useNavigate();
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography>रक्कम प्राप्त झाली.</Typography>
+              <Typography>amount Received</Typography>
             </Grid>
             <Grid item xs={12}>
               <div className={classes.inputGroup}>
@@ -167,27 +170,27 @@ const navigate = useNavigate();
             </Grid>
             <Grid item xs={12}>
 
-              <TextField 
-                label="प्राप्तकर्ता"
+              <TextField
+                label="Receiver"
                 variant="standard"
                 size="small"
                 fullWidth
-                value= {data.receiver}
+                value={data.receiver}
                 InputLabelProps={{ shrink: Boolean(data.amount) }}
               />
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" align="center">
-                <b style={{ fontStyle: "italic", fontSize: "30px", color: "red" }}>धन्यवाद!</b>
+                <b style={{ fontStyle: "italic", fontSize: "30px", color: "red" }}>Thank You!</b>
               </Typography>
             </Grid>
           </Grid>
         </Paper>
- </div>
-<div style={{display: "flex ",justifyContent: "center", minWidth:"100%"}}>
-  <img src={footer4} alt="footer4" style={{width:"100%" ,alignItems:"center"}} />
-</div>
- <div>
+      </div>
+      <div style={{ display: "flex ", justifyContent: "center", minWidth: "100%" }}>
+        <img src={footer4} alt="footer4" style={{ width: "100%", alignItems: "center" }} />
+      </div>
+      <div>
         <button onClick={handlePrint} disabled={isButtonDisabled}>Print Page</button>
 
       </div>

@@ -19,6 +19,7 @@ export const register = (obj) => {
 };
 
 export const login = (obj) => {
+  console.log(axios);
   // console.log(obj.data);
   return (
     axios

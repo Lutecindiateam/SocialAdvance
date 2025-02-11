@@ -9,12 +9,12 @@ import { Link } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material";
 
- //for developement
-const BASEURL = "http://localhost:5000/api"
+//for developement
+// const BASEURL = "http://localhost:5000/api"
 
 //for production
 
-// const BASEURL = "/api"
+const BASEURL = "/api"
 
 const UserSignUp = () => {
   const [name, setName] = useState("");
@@ -87,11 +87,11 @@ const UserSignUp = () => {
   // console.log(data);
   return (
     <div className="background">
-    <Container component="main" maxWidth="xs">
-      <div>
-        <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Sign Up</Typography>
-        <form onSubmit={handleSubmit}>
-          {/* <div className="mb-3">
+      <Container component="main" maxWidth="xs">
+        <div>
+          <Typography variant="h5" style={{ textAlign: "center", fontSize: "30px", color: "white" }}>Sign Up</Typography>
+          <form onSubmit={handleSubmit}>
+            {/* <div className="mb-3">
           <label>Association Name</label>
           <Select
             fullWidth
@@ -111,126 +111,126 @@ const UserSignUp = () => {
             ))}
           </Select>
         </div> */}
-          <TextField
-            fullWidth
-            label="Association Code/Mandal Code"
-            type="text"
-            required
-            placeholder="Enter your Association Code/Mandal Code"
-            onChange={(e) => setCode(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Organization Code"
+              type="text"
+              required
+              placeholder="Enter your Organization Code"
+              onChange={(e) => setCode(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="User Full Name"
-            type="text"
-            required
-            placeholder="Name"
-            onChange={(e) => setName(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="User Full Name"
+              type="text"
+              required
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="User Phone Number"
-            type="text"
-            required
-            placeholder="Phone"
-            onChange={(e) => setPhone(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="User Phone Number"
+              type="text"
+              required
+              placeholder="Phone"
+              onChange={(e) => setPhone(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="User Email address"
-            type="email"
-            required
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="User Email address"
+              type="email"
+              required
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            required
-            placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
-            InputProps={{
-              style: {
-                border: "1px solid white", // White border
-                borderRadius: "10px", // Border radius
-                color: "white", // Text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white", // Label color
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              required
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+              margin="normal"
+              InputProps={{
+                style: {
+                  border: "1px solid white", // White border
+                  borderRadius: "10px", // Border radius
+                  color: "white", // Text color
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white", // Label color
+                },
+              }}
+            />
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Sign Up
-          </Button>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Sign Up
+            </Button>
 
-          <Typography variant="body2" align="right"  style={{ color: "white", fontSize: "16px" }}>
-            Already registered? <a href="/userlogin" style={{ color: "white"}}>Login</a>
-          </Typography>
-        </form>
-      </div>
-    </Container>
+            <Typography variant="body2" align="right" style={{ color: "white", fontSize: "16px" }}>
+              Already registered? <a href="/userlogin" style={{ color: "white" }}>Login</a>
+            </Typography>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 };
